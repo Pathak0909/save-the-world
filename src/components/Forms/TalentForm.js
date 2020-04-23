@@ -53,6 +53,9 @@ const TalentForm=(props)=>{
       props.addNewData(Data);
       sendData();
       document.querySelector('form').reset();
+      setTimeout(()=>{
+        window.location.reload(true);
+      },1000);
       alert.success('Profile added! Please refresh page to see updates');
       return;
       }
@@ -168,11 +171,10 @@ const TalentForm=(props)=>{
               </label>
                 
               </div>
-           
               <div className="input-field col s6">
                       <div class="file-field input-field">
                       <div class="btn">
-                          <span>LinkedIn URL/Resume</span>
+                          <span>Resume</span>
                           <input type="file" id="resume_url"/>
                       </div>
                       <div class="file-path-wrapper">

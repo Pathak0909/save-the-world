@@ -72,6 +72,9 @@ const JobForm=()=>{
     
     sendData();
     document.querySelector('form').reset();
+    setTimeout(()=>{
+      window.location.reload(true);
+    },1000);
     alert.success('Job Posting added! Please refresh page to see updates.');
     return;
     }

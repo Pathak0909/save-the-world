@@ -1,8 +1,11 @@
 import React,{useEfect,useState} from 'react';
 import {useAlert} from 'react-alert';
 import axios from 'axios';
-
+import { useForm } from "react-hook-form";
+import './JobForm.css';
 const JobForm=()=>{
+  const { register, watch, errors } = useForm();
+  const [disableBtn,setDisableBtn]=useState('disabled');
   const alert=useAlert();
   const initState={
     company:'',
@@ -24,6 +27,9 @@ const JobForm=()=>{
           [e.target.id]:e.target.value
       })
       //console.log('details',Data)
+      if(!validate())
+      setDisableBtn('');
+
   }
   const sendData=()=>{
     let i=1;
@@ -87,16 +93,20 @@ const JobForm=()=>{
     return(
         <div className="job-form">
         <h6 className="text-bold-extra left">Job Posting</h6>
+      <br/>
       <p className="left">Fill out your details (all fields are required for submission).</p>
-        <br/>
-        <div className="row error-msg hide" style={{height:'100%'}}>
+        
+        {/* <div className="row error-msg hide" style={{height:'100%'}}>
           <p style={{color:"red"}} class="center-align">Please fill all the fields</p>
-        </div>
+        </div> */}
+        <br/>
     <div className="row">
         <form className="col s12" class="job-form" onChange={handleChange}>
           <div className="row">
             <div className="input-field col s6">
-              <input  id="company" type="text" required="" aria-required="true" className="validate" />
+              <input  id="company" type="text" name="company" required="" aria-required="true" className="validate"
+              ref={register({ required: true})}
+               />
               <label data-error="wrong" data-success="right" htmlFor="company">Company</label>
               {/* <span class="helper-text" data-error="wrong" data-success="right">Please fill this field</span> */}
             </div>
@@ -155,8 +165,10 @@ const JobForm=()=>{
         </form>
       </div>
       <div class="modal-footer">
+    
+
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a onClick={handleSubmit} class="modal-close waves-effect waves-green btn">Submit</a>
+      <a onClick={handleSubmit} class={`modal-close waves-effect waves-green btn ${disableBtn}`}>Submit</a>
     </div>
         </div>
     )

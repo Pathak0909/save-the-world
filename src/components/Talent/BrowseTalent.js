@@ -38,7 +38,9 @@ const BrowseTalent=()=>{
         var sel = document.querySelectorAll('select');
         M.FormSelect.init(sel, {});
         var elems = document.querySelectorAll('.modal');
-      M.Modal.init(elems, {});
+        M.Modal.init(elems, {});
+        var dropdwn = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(dropdwn, {});
       })
       const filter=(filterType)=>{
         //console.log(data);
@@ -51,11 +53,11 @@ const BrowseTalent=()=>{
         //console.log(newArr);
         setDisplayData(newArr);
       }
-      const sortAlphabetically=(fieldName)=>{
+      const sortAlphabetically=(field)=>{
         let temp=[...displayData];
        temp.sort(function(a, b){
-          if(a.name < b.name) { return -1; }
-          if(a.name > b.name) { return 1; }
+          if(a[field] < b[field]) { return -1; }
+          if(a[field] > b[field]) { return 1; }
           return 0;
       })
       setDisplayData(temp);
@@ -119,7 +121,20 @@ const BrowseTalent=()=>{
                     
                 </div>
                 <div className="row">
-                        <a className="btn filter-btn" onClick={()=>{(sortAlphabetically('name'))}} >Sort</a>
+                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>Sort By</a>
+
+                    <ul id='dropdown1' class='dropdown-content'>
+                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{sortAlphabetically('name')}}>Name</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('college_name')}}>College</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('sepcialization')}}>Specialization</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('company_name')}}>Company</a></li>
+                      {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
+                      <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('city')}}>City</a></li>
+                      
+                    </ul>
+
                         <a className="btn filter-btn" onClick={()=>{filter(true)}} >Filter Students</a>
                     
                         <a className="btn filter-btn " onClick={()=>{filter(false)}} >Filter Working</a>

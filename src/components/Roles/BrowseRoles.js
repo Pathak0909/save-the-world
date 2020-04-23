@@ -6,6 +6,7 @@ import JobForm from '../Forms/JobForm';
 
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
+  let [displayData,setDisplayData]=useState([]);
   let tableData=[];
   useEffect(()=>{
       
@@ -26,18 +27,29 @@ const BrowseRoles=()=>{
         console.log('arr: ',arr);
        
         setData(arr)
+        setDisplayData(arr);
       }
       fetchData();
     },[])
     useEffect(()=>{
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, {});
-        
+        var dropdwn = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(dropdwn, {});
             
     })
-    if(data.length>0){
+    const sortAlphabetically=(field)=>{
+      let temp=[...displayData];
+     temp.sort(function(a, b){
+        if(a[field] < b[field]) { return -1; }
+        if(a[field] > b[field]) { return 1; }
+        return 0;
+    })
+    setDisplayData(temp);
+    }
+    if(displayData.length>0){
       //console.log('data: ',arr,'type of ',typeof(arr));
-      data.forEach(el=>{
+      displayData.forEach(el=>{
         console.log('el: ',el)
         tableData.push(
            <tr>
@@ -88,7 +100,26 @@ console.log('table data: ',tableData);
                    
                     
                 </div>
-                
+                <div className="row">
+                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>Sort By</a>
+
+                    <ul id='dropdown1' class='dropdown-content'>
+                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{sortAlphabetically('company')}}>Company</a></li>
+                      {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
+                      <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('city')}}>City</a></li>
+                      {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
+                      {/* <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li> */}
+                      {/* <li><a onClick={()=>{sortAlphabetically('hiring')}}>Hiring</a></li> */}
+                      
+                    </ul>
+
+                        {/* <a className="btn filter-btn" onClick={()=>{filter(true)}} >Filter Students</a>
+                    
+                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >Filter Working</a> */}
+                   
+                  </div>
             </div>
             <div className="table container">
             <table className="responsive">

@@ -2,11 +2,14 @@ import React,{useEffect} from 'react';
 import './Main.css';
 import M from 'materialize-css';
 import {Link} from 'react-router-dom';
-import Footer from '../ui/Footer';
 import TalentForm from '../Forms/TalentForm';
 import JobForm from '../Forms/JobForm';
+import Sharing from 'react-sharing';
+
+
 
 const Main=()=>{
+  const url='http://unlocktalenttest.getwork.org';
   useEffect(()=>{
     var elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, {});
@@ -100,21 +103,36 @@ const Main=()=>{
               </h6>
               </div>
               
-            <div className="social-icons container row">
-              {/* <p>Connect with us to know more</p> */}
-              <ul>
-              <li><a href="" class="btn-floating btn-small  light-blue accent-3" data-tooltip="Instragram">
+            {/* <div className="social-icons container row">
+             
+          <ul>
+              <li>
+                <a href="" class="btn-floating btn-small  light-blue accent-3" data-tooltip="Instragram">
                     <i class="fab fa-instagram"></i>
-                </a></li>
-                <li><a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Facebook">
+                </a>
+              </li>
+              <li>
+                <a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Facebook">
                         <i class="fab fa-facebook"></i>
-                    </a></li>
-                <li><a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Twitter">
+                  </a>
+                  
+              </li>
+              <li>
+                <a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Twitter">
                     <i class="fab fa-twitter"></i>
-                </a></li>
-              </ul>
+                </a>
+              </li>
+          </ul>
            
-            </div>
+            </div> */}
+          
+            <Sharing
+                  sites = {[ "facebook","twitter",'linkedin' ]}
+                  url = 'http://unlocktalenttest.getwork.org'
+                  title = "GetWork Covid 19 Initiative"
+                  description = "Getwork"
+                />
+
         </div>
         
     )

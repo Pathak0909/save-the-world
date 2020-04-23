@@ -141,7 +141,7 @@ const JobForm=()=>{
               <input  id="job_link" type="url" required="" aria-required="true" className="validate" />
               <label htmlFor="job_link">Job Posting Link</label>
             </div>
-            <div className="input-field col s12">
+            <div className="input-field col s6">
               <input  id="point_of_contact" required="" aria-required="true" type="text" className="validate" />
               <label htmlFor=" point_of_contact">Point of Contact</label>
             </div>

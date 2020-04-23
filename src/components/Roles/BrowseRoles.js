@@ -3,6 +3,7 @@ import './BrowseRoles.css';
 import M from 'materialize-css';
 import axios from 'axios';
 import JobForm from '../Forms/JobForm';
+import moment from 'moment';
 
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
@@ -55,7 +56,7 @@ const BrowseRoles=()=>{
         //console.log('el: ',el)
         tableData.push(
            <tr>
-              <td>{el.createdAt}</td>
+              <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
               <td>{el.company_name}</td>
               <td>-</td>
               <td>{el.description}</td>
@@ -103,7 +104,9 @@ console.log('Data: ',data);
                     
                 </div>
                 <div className="row">
-                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>Sort By</a>
+                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
+                  <i className="material-icons large">sort</i>
+                  Sort By</a>
 
                     <ul id='dropdown1' class='dropdown-content'>
                       {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}

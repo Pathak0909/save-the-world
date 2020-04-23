@@ -49,7 +49,7 @@ const TalentForm=(props)=>{
       if(!validate()){
       console.log('sending data');
       props.addNewData(Data);
-      //sendData();
+      sendData();
       document.querySelector('form').reset();
       alert.success('Profile added! Please refresh page to see updates');
       return;
@@ -149,8 +149,8 @@ const TalentForm=(props)=>{
             </div>
             <div className="row">
               <div className="input-field col s12 m6">
-                <input  id="role" type="url" className="validate" />
-                <label htmlFor="role">Job Posting Link</label>
+                <input  id="role" type="text" className="validate" />
+                <label htmlFor="role">Role</label>
               </div>
            
               <div className="input-field col s12 m6">

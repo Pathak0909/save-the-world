@@ -4,7 +4,7 @@ import M from 'materialize-css';
 import TalentForm from '../Forms/TalentForm';
 import axios from 'axios';
 import { filter } from 'minimatch';
-
+import moment from 'moment';
 
 const BrowseTalent=()=>{
     let [data,setData]=useState([]);
@@ -76,16 +76,16 @@ const BrowseTalent=()=>{
             //console.log('el: ',el)
             tableData.push(
                <tr>
-                  <td>{el.createdAt}</td>
+                  <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
                   <td>{el.name}</td>
-                  <td>{el.is_student}</td>
+                  <td>{el.is_student?'Student':'Working'}</td>
                   <td>{el.college_name}</td>
                   <td>{el.specialization}</td>
                   <td>-</td>
                   <td>{el.company_sector}</td>
                   <td>{el.role}</td>
                   <td>{el.city}</td>
-                  <td>{el.is_relocation}</td>
+                  <td>{el.is_relocation?'Yes':'No'}</td>
                   <td>{el.email}</td>
                   <td>{el.linkedin_url}</td>
                   {/* <td>9891100201</td> */}
@@ -106,7 +106,8 @@ const BrowseTalent=()=>{
             <div className=" title-box">
                 <div className="row">
                     <div className="col m4 s12 float-left">
-                        <a className="btn modal-trigger" href="#add-talent">Add Yourself</a>
+                        <a className="btn modal-trigger" href="#add-talent">
+                        ADD YOURSELF</a>
                     </div>
                     <div className="col m4 s12 center-align">
                         <h5 className="">Talent Affected by Covid19</h5>
@@ -129,7 +130,8 @@ const BrowseTalent=()=>{
                     
                 </div>
                 <div className="row">
-                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>Sort By</a>
+                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
+                <i className="material-icons large">sort</i>Sort By</a>
 
                     <ul id='dropdown1' class='dropdown-content'>
                       {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
@@ -143,9 +145,11 @@ const BrowseTalent=()=>{
                       
                     </ul>
 
-                        <a className="btn filter-btn" onClick={()=>{filter(true)}} >Filter Students</a>
+                        <a className="btn filter-btn" onClick={()=>{filter(true)}} >
+                        <i className="material-icons large">filter_list</i>Filter Students</a>
                     
-                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >Filter Working</a>
+                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >
+                        <i className="material-icons large">filter_list</i>Filter Working</a>
                    
                   </div>
             </div>

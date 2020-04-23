@@ -64,6 +64,12 @@ const BrowseTalent=()=>{
       console.log('Data after sorting: ',temp);
       setDisplayData(temp);
       }
+      const addNewData=(newEntry)=>{
+        console.log('inside this: ',newEntry);
+        let temp=[...data,newEntry]
+        setData(temp);
+        setDisplayData(data);
+      }
   if(displayData.length>0){
           //console.log('data: ',arr,'type of ',typeof(arr));
           displayData.forEach(el=>{
@@ -173,7 +179,7 @@ const BrowseTalent=()=>{
 
   <div id="add-talent" class="modal">
     <div class="modal-content talent-modal">
-      <TalentForm></TalentForm>
+      <TalentForm addNewData={addNewData}></TalentForm>
     </div>
   
    

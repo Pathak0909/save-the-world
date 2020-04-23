@@ -2,7 +2,8 @@ import React,{useEfect, useState} from 'react';
 import {useAlert} from 'react-alert';
 import axios from 'axios';
 
-const TalentForm=()=>{
+const TalentForm=(props)=>{
+  //console.log(props.addNewData);
   const alert=useAlert();
   const initState={
     name:'',
@@ -47,6 +48,7 @@ const TalentForm=()=>{
       //document.querySelector('form').reset();
       if(!validate()){
       console.log('sending data');
+      props.addNewData(Data);
       //sendData();
       document.querySelector('form').reset();
       alert.success('Profile added! Please refresh page to see updates');
@@ -76,6 +78,7 @@ const TalentForm=()=>{
       })
         .then(res=>{
           console.log(res);
+
         })
         .catch(err=>{
           console.log(err);

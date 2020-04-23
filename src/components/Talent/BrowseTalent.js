@@ -54,18 +54,20 @@ const BrowseTalent=()=>{
         setDisplayData(newArr);
       }
       const sortAlphabetically=(field)=>{
+        console.log(`sorting with ${field}`)
         let temp=[...displayData];
        temp.sort(function(a, b){
           if(a[field] < b[field]) { return -1; }
           if(a[field] > b[field]) { return 1; }
           return 0;
       })
+      console.log('Data after sorting: ',temp);
       setDisplayData(temp);
       }
   if(displayData.length>0){
           //console.log('data: ',arr,'type of ',typeof(arr));
           displayData.forEach(el=>{
-            console.log('el: ',el)
+            //console.log('el: ',el)
             tableData.push(
                <tr>
                   <td>{el.createdAt}</td>
@@ -88,7 +90,7 @@ const BrowseTalent=()=>{
         }
   if(data.length>0)
   console.log('Data: ',data);
-  console.log('table data: ',tableData);
+  //console.log('table data: ',tableData);
   // if(tableData.length==0) return (<div>Loading...</div>)
   // else
   return(

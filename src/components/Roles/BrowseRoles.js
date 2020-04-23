@@ -24,7 +24,7 @@ const BrowseRoles=()=>{
         .catch(err=>{
           console.log(err);
         })
-        console.log('arr: ',arr);
+        //console.log('arr: ',arr);
        
         setData(arr)
         setDisplayData(arr);
@@ -39,18 +39,20 @@ const BrowseRoles=()=>{
             
     })
     const sortAlphabetically=(field)=>{
+      console.log(`sorting by ${field}`);
       let temp=[...displayData];
      temp.sort(function(a, b){
         if(a[field] < b[field]) { return -1; }
         if(a[field] > b[field]) { return 1; }
         return 0;
     })
+    console.log('after sorting: ',temp);
     setDisplayData(temp);
     }
     if(displayData.length>0){
       //console.log('data: ',arr,'type of ',typeof(arr));
       displayData.forEach(el=>{
-        console.log('el: ',el)
+        //console.log('el: ',el)
         tableData.push(
            <tr>
               <td>{el.createdAt}</td>
@@ -70,7 +72,7 @@ const BrowseRoles=()=>{
     }
 if(data.length>0)
 console.log('Data: ',data);
-console.log('table data: ',tableData);
+//console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
   return(
@@ -105,9 +107,9 @@ console.log('table data: ',tableData);
 
                     <ul id='dropdown1' class='dropdown-content'>
                       {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
-                      <li><a onClick={()=>{sortAlphabetically('company')}}>Company</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('company_name')}}>Company</a></li>
                       {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
-                      <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('job_role')}}>Role</a></li>
                       <li><a onClick={()=>{sortAlphabetically('city')}}>City</a></li>
                       {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
                       {/* <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li> */}

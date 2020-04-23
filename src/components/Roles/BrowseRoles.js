@@ -62,6 +62,7 @@ const BrowseRoles=()=>{
       setDisplayData(newArr);
     }
     const filterBySector=(types)=>{
+      setDisplayData(data)
       if(types.includes('other'))
       return;
       let newArr=data.filter(entry=>{
@@ -107,11 +108,11 @@ console.log('Data: ',data);
                         <h5 className="">Talent Affected by Covid19</h5>
                     </div>
                     <div className="col m4 s12 float-right">
-                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
+                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
                   <i className="material-icons large">sort</i>
                   Filter By Sector</a>
                     <div class="nav-wrapper">
-                    <ul id='dropdown1' class='dropdown-content'>
+                    <ul id='sector-dropdown' class='dropdown-content'>
                       {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
                       <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
                       <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Switch, BrowserRouter, Route} from 'react-router-dom'
 import './App.css';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
@@ -7,6 +7,7 @@ import Main from './components/Main/Main';
 import BrowseTalent from './components/Talent/BrowseTalent';
 import BrowseRoles from './components/Roles/BrowseRoles';
 import Navbar from './components/ui/Navbar';
+import ReactPaginate from 'react-paginate';
 
 const options = {
   // you can also just use 'bottom center'
@@ -17,8 +18,10 @@ const options = {
   transition: transitions.SCALE
 }
 
-function App() {
+export default class App extends Component{
   
+
+  render(){
   return (
     <div className="App">
     <AlertProvider template={AlertTemplate} {...options}>
@@ -35,6 +38,7 @@ function App() {
         
     </div>
   );
+  }
 }
 
-export default App;
+

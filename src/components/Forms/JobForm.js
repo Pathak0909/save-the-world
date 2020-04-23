@@ -80,15 +80,18 @@ const JobForm=()=>{
     }
     else{
       alert.error('Please fill all the fields first!');
+      document.querySelector('.error-msg').classList.remove('hide');
       return;
     }
   }
     return(
         <div className="job-form">
         <h6 className="text-bold-extra left">Job Posting</h6>
-      <p className="left">Fill out your details (all fields are required for submission). If you have multiple 
-        postings you would like to add 
-        you can fill out the csv template file here and email to katie@torchcapital.vc</p>
+      <p className="left">Fill out your details (all fields are required for submission).</p>
+        <br/>
+        <div className="row error-msg hide" style={{height:'100%'}}>
+          <p style={{color:"red"}} class="center-align">Please fill all the fields</p>
+        </div>
     <div className="row">
         <form className="col s12" class="job-form" onChange={handleChange}>
           <div className="row">

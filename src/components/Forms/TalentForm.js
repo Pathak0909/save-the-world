@@ -28,7 +28,7 @@ const TalentForm=(props)=>{
         ...Data,
         [e.target.id]:e.target.value
       })
-     
+     if(validate()) document.querySelector('.close-btn').classList.add('disable');
     }
     const validate=()=>{
       let isEmpty=false;
@@ -61,6 +61,7 @@ const TalentForm=(props)=>{
       }
       else{
         alert.error('Please fill all the fields first!');
+        document.querySelector('.error-msg').classList.remove('hide');
         return;
       }
     }
@@ -101,6 +102,10 @@ const TalentForm=(props)=>{
       </h6>
   
         <p className="left"> &nbsp; (All fields are mandatory)</p>
+        <br/>
+        <div className="row error-msg hide" style={{height:'100%'}}>
+          <p style={{color:"red"}} class="center-align">Please fill all the fields</p>
+        </div>
       <div className="row">
         
           <form className="col s12" onChange={handleChange}>
@@ -199,7 +204,7 @@ const TalentForm=(props)=>{
         </div>
         <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a onClick={handleSubmit} class="modal-close waves-effect waves-green btn">Submit</a>
+      <a onClick={handleSubmit} class="close-btn modal-close waves-effect waves-green btn">Submit</a>
     </div>
         </div>
     )

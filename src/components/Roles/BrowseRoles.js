@@ -4,10 +4,15 @@ import M from 'materialize-css';
 import axios from 'axios';
 import JobForm from '../Forms/JobForm';
 import moment from 'moment';
+import Pagination from '../ui/Pagination';
 
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
   let [displayData,setDisplayData]=useState([]);
+  let [currentPage,setCurrentPage]=useState(1);
+  let [entriesPerPage,setEntriesPerPage]=useState(5);
+  const pageNumbers=[];    
+  
   let tableData=[];
   useEffect(()=>{
       
@@ -29,16 +34,28 @@ const BrowseRoles=()=>{
        
         setData(arr)
         setDisplayData(arr);
+        
+
+        for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
+        pageNumbers.push(i);
+
+        console.log(pageNumbers);
       }
       fetchData();
+      setDisplayData(currentData);
     },[])
     useEffect(()=>{
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, {});
         var dropdwn = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdwn, {});
-            
+        //setDisplayData(currentData);
     })
+    //get current posts
+const indexOfLastEntry=currentPage*entriesPerPage;
+const indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
+const currentData=data.slice(indexOfFirstEntry,indexOfLastEntry);
+
     const sortAlphabetically=(field)=>{
       console.log(`sorting by ${field}`);
       let temp=[...displayData];
@@ -62,7 +79,7 @@ const BrowseRoles=()=>{
       setDisplayData(newArr);
     }
     const filterBySector=(types)=>{
-      setDisplayData(data)
+      setDisplayData(currentData)
       if(types.includes('other'))
       return;
       let newArr=data.filter(entry=>{
@@ -71,6 +88,8 @@ const BrowseRoles=()=>{
       })
       setDisplayData(newArr);
     }
+
+
     if(displayData.length>0){
       //console.log('data: ',arr,'type of ',typeof(arr));
       displayData.forEach(el=>{
@@ -97,6 +116,9 @@ console.log('Data: ',data);
 //console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
+const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
   return(
                <div className="browse_roles">
             <div className="title-box">
@@ -180,7 +202,12 @@ console.log('Data: ',data);
     </div>
   
   </div>
-        
+        <Pagination 
+        entriesPerPage={entriesPerPage}
+        totalData={data.length}
+        paginate={paginate}
+        />
+            
         </div>
     )
 }

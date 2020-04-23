@@ -42,15 +42,26 @@ const BrowseTalent=()=>{
         var dropdwn = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdwn, {});
       })
+      const filterBySector=(types)=>{
+        setDisplayData(data)
+        if(types.includes('other'))
+        return;
+        let newArr=data.filter(entry=>{
+          if(types.includes(entry.company_sector.toLowerCase()))
+            return entry;
+        })
+        setDisplayData(newArr);
+      }
       const filter=(filterType)=>{
-        //console.log(data);
+        //setDisplayData(data)
+        console.log(data);
         let newArr=data.filter(entry=>{
           if(filterType)
           return entry.is_student;
-          else
+           else
           return !entry.is_student;
         })
-        //console.log(newArr);
+        console.log(newArr);
         setDisplayData(newArr);
       }
       const sortAlphabetically=(field)=>{
@@ -113,16 +124,20 @@ const BrowseTalent=()=>{
                         <h5 className="">Talent Affected by Covid19</h5>
                     </div>
                     <div className="col m4 s12 float-right">
-                    <div class="nav-wrapper ">
-                            <form>
-                                <div class="input-field">
-                                <input id="search" type="search" placeholder="Search for jobs by sector" required/>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i>
-
-                                </label>
-                                <i class="material-icons">close</i>
-                                </div>
-                            </form>
+                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
+                  <i className="material-icons large">sort</i>
+                  Filter By Sector</a>
+                    <div class="nav-wrapper">
+                    <ul id='sector-dropdown' class='dropdown-content'>
+                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
+                      <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
+                      <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
+                      <li><a onClick={()=>{filterBySector(['retail services'])}}>Retail Services</a></li>
+                      <li><a onClick={()=>{filterBySector(['other'])}}>Other</a></li>
+                    
+                      
+                    </ul>
                             </div>
                     </div>
                     

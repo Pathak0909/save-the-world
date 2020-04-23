@@ -75,7 +75,9 @@ nav .brand-logo {
   margin: 5px 0px;
 }
 
-
+.btn{
+  border-radius: 10px !important;
+}
 .main h5{
   font-weight: 500;
 }

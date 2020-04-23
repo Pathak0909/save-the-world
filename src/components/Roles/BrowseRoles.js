@@ -50,6 +50,26 @@ const BrowseRoles=()=>{
     console.log('after sorting: ',temp);
     setDisplayData(temp);
     }
+    const filter=(filterType)=>{
+      //console.log(data);
+      let newArr=data.filter(entry=>{
+        if(filterType)
+        return entry.hiring_type=='INTERN';
+        else
+        return entry.hiring_type=='FULL_TIME';
+      })
+      //console.log(newArr);
+      setDisplayData(newArr);
+    }
+    const filterBySector=(types)=>{
+      if(types.includes('other'))
+      return;
+      let newArr=data.filter(entry=>{
+        if(types.includes(entry.company_sector.toLowerCase()))
+          return entry;
+      })
+      setDisplayData(newArr);
+    }
     if(displayData.length>0){
       //console.log('data: ',arr,'type of ',typeof(arr));
       displayData.forEach(el=>{
@@ -58,7 +78,7 @@ const BrowseRoles=()=>{
            <tr>
               <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
               <td>{el.company_name}</td>
-              <td>-</td>
+              <td>{el.company_sector?el.company_sector:'-'}</td>
               <td>{el.description}</td>
               <td>{el.job_role}</td>
               <td>{el.hiring_type}</td>
@@ -87,16 +107,20 @@ console.log('Data: ',data);
                         <h5 className="">Talent Affected by Covid19</h5>
                     </div>
                     <div className="col m4 s12 float-right">
+                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
+                  <i className="material-icons large">sort</i>
+                  Filter By Sector</a>
                     <div class="nav-wrapper">
-                            <form>
-                                <div class="input-field">
-                                <input id="search" type="search" placeholder="Search for jobs by sector" required/>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i>
-
-                                </label>
-                                <i class="material-icons">close</i>
-                                </div>
-                            </form>
+                    <ul id='dropdown1' class='dropdown-content'>
+                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
+                      <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
+                      <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
+                      <li><a onClick={()=>{filterBySector(['retail services'])}}>Retail Services</a></li>
+                      <li><a onClick={()=>{filterBySector(['other'])}}>Other</a></li>
+                    
+                      
+                    </ul>
                             </div>
                     </div>
                     
@@ -111,18 +135,18 @@ console.log('Data: ',data);
                     <ul id='dropdown1' class='dropdown-content'>
                       {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
                       <li><a onClick={()=>{sortAlphabetically('company_name')}}>Company</a></li>
-                      {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
+                      <li><a onClick={()=>{sortAlphabetically('company_sector')}}>Sector</a></li>
                       <li><a onClick={()=>{sortAlphabetically('job_role')}}>Role</a></li>
                       <li><a onClick={()=>{sortAlphabetically('city')}}>City</a></li>
-                      {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
-                      {/* <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li> */}
-                      {/* <li><a onClick={()=>{sortAlphabetically('hiring')}}>Hiring</a></li> */}
+                    
                       
                     </ul>
 
-                        {/* <a className="btn filter-btn" onClick={()=>{filter(true)}} >Filter Students</a>
+                        <a className="btn filter-btn" onClick={()=>{filter(true)}} >
+                        <i className="material-icons large">filter_list</i>Filter Interns</a>
                     
-                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >Filter Working</a> */}
+                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >
+                        <i className="material-icons large">filter_list</i>Filter Full Time</a>
                    
                   </div>
             </div>

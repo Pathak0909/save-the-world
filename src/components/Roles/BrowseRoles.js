@@ -68,6 +68,7 @@ const BrowseRoles=()=>{
     setDisplayData(temp);
     }
     const filter=(filterType)=>{
+      
       //console.log(data);
       let newArr=data.filter(entry=>{
         if(filterType)
@@ -79,7 +80,7 @@ const BrowseRoles=()=>{
       setDisplayData(newArr);
     }
     const filterBySector=(types)=>{
-      setDisplayData(data)
+     
       if(types.includes('other'))
       return;
       let newArr=data.filter(entry=>{
@@ -127,7 +128,7 @@ console.log('Data: ',data);
                         <a className="btn modal-trigger" href="#job-post">Post a Job</a>
                     </div>
                     <div className="col m4 s12 center-align">
-                        <h5 className="">Talent Affected by Covid19</h5>
+                        <h5 className="">Companies Hiring and Open Roles</h5>
                     </div>
                     <div className="col m4 s12 float-right">
                     <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
@@ -170,7 +171,8 @@ console.log('Data: ',data);
                     
                         <a className="btn filter-btn " onClick={()=>{filter(false)}} >
                         <i className="material-icons large">filter_list</i>Filter Full Time</a>
-                   
+                        <a className="btn" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
+
                   </div>
             </div>
             <div className="table container">

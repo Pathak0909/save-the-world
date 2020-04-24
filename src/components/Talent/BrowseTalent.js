@@ -166,7 +166,8 @@ const BrowseTalent=()=>{
                     
                         <a className="btn filter-btn " onClick={()=>{filter(false)}} >
                         <i className="material-icons large">filter_list</i>Filter Working</a>
-                   
+                       
+                        <a className="btn" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
                   </div>
             </div>
             <div className="table container">

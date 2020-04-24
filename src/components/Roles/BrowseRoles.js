@@ -5,12 +5,16 @@ import axios from 'axios';
 import JobForm from '../Forms/JobForm';
 import moment from 'moment';
 import Pagination from '../ui/Pagination';
+import RolesTable from './RolesTable';
 
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
   let [displayData,setDisplayData]=useState([]);
   // let [currentPage,setCurrentPage]=useState(1);
   // let [entriesPerPage,setEntriesPerPage]=useState(5);
+  // let [currentData,setCurrentData]=useState([]);
+  // let indexOfLastEntry=currentPage*entriesPerPage;
+  // let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
   // const pageNumbers=[];    
   
   let tableData=[];
@@ -33,13 +37,11 @@ const BrowseRoles=()=>{
         //console.log('arr: ',arr);
        
         setData(arr)
-        setDisplayData(arr);
         
-
-        // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
-        // pageNumbers.push(i);
-
-        // console.log(pageNumbers);
+        setDisplayData(arr)
+        //setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry))
+        //setDisplayData(currentData)
+       
       }
       fetchData();
       // setDisplayData(currentData);
@@ -51,11 +53,14 @@ const BrowseRoles=()=>{
         M.Dropdown.init(dropdwn, {});
         //setDisplayData(currentData);
     })
-    //get current posts
-//const indexOfLastEntry=currentPage*entriesPerPage;
-//const indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
-//const currentData=data.slice(indexOfFirstEntry,indexOfLastEntry);
+    // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
+    // pageNumbers.push(i);
 
+    // console.log(pageNumbers);
+    //get current posts
+
+//displayData=data.slice(indexOfFirstEntry,indexOfLastEntry);
+//setDisplayData(currentData)
     const sortAlphabetically=(field)=>{
       console.log(`sorting by ${field}`);
       let temp=[...displayData];
@@ -70,6 +75,7 @@ const BrowseRoles=()=>{
     const filter=(filterType)=>{
       
       //console.log(data);
+     // let temp=[...displayData];
       let newArr=data.filter(entry=>{
         if(filterType)
         return entry.hiring_type=='INTERN';
@@ -90,34 +96,12 @@ const BrowseRoles=()=>{
       setDisplayData(newArr);
     }
 
-
-    if(displayData.length>0){
-      //console.log('data: ',arr,'type of ',typeof(arr));
-      displayData.forEach(el=>{
-        //console.log('el: ',el)
-        tableData.push(
-           <tr>
-              <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
-              <td>{el.company_name}</td>
-              <td>{el.company_sector?el.company_sector:'-'}</td>
-              <td>{el.description}</td>
-              <td>{el.job_role}</td>
-              <td>{el.hiring_type}</td>
-              <td>{el.city}</td>
-              <td>{el.point_of_contact}</td>
-              <td>{el.job_link}</td>
-             
-            </tr>
-            
-        )
-      })
-    }
 if(data.length>0)
 console.log('Data: ',data);
 //console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
-// const paginate = pageNumber => setCurrentPage(pageNumber);
+//const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
   return(
@@ -175,28 +159,8 @@ console.log('Data: ',data);
 
                   </div>
             </div>
-            <div className="table container">
-            <table className="responsive">
-        <thead>
-          <tr className="field-names">
-              <th> Date Posted  </th>
-              <th>Company</th>
-              <th> Sector</th>
-              <th>Description</th>
-              <th>Role/Title</th>
-              <th>Hiring</th>
-              <th>Location</th>
-              <th>Point of Contact</th>
-              <th>Job Link</th>
-          </tr>
-        </thead>
-
-        <tbody>
-      
-        {tableData}
-        </tbody>
-      </table>
-            </div>
+ 
+            <RolesTable displayData={displayData}/>
             <div id="job-post" class="modal">
     <div class="modal-content role-modal">
       <JobForm></JobForm>

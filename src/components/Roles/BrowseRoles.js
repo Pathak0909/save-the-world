@@ -9,9 +9,9 @@ import Pagination from '../ui/Pagination';
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
   let [displayData,setDisplayData]=useState([]);
-  let [currentPage,setCurrentPage]=useState(1);
-  let [entriesPerPage,setEntriesPerPage]=useState(5);
-  const pageNumbers=[];    
+  // let [currentPage,setCurrentPage]=useState(1);
+  // let [entriesPerPage,setEntriesPerPage]=useState(5);
+  // const pageNumbers=[];    
   
   let tableData=[];
   useEffect(()=>{
@@ -36,13 +36,13 @@ const BrowseRoles=()=>{
         setDisplayData(arr);
         
 
-        for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
-        pageNumbers.push(i);
+        // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
+        // pageNumbers.push(i);
 
-        console.log(pageNumbers);
+        // console.log(pageNumbers);
       }
       fetchData();
-      setDisplayData(currentData);
+      // setDisplayData(currentData);
     },[])
     useEffect(()=>{
         var elems = document.querySelectorAll('.modal');
@@ -52,9 +52,9 @@ const BrowseRoles=()=>{
         //setDisplayData(currentData);
     })
     //get current posts
-const indexOfLastEntry=currentPage*entriesPerPage;
-const indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
-const currentData=data.slice(indexOfFirstEntry,indexOfLastEntry);
+//const indexOfLastEntry=currentPage*entriesPerPage;
+//const indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
+//const currentData=data.slice(indexOfFirstEntry,indexOfLastEntry);
 
     const sortAlphabetically=(field)=>{
       console.log(`sorting by ${field}`);
@@ -79,7 +79,7 @@ const currentData=data.slice(indexOfFirstEntry,indexOfLastEntry);
       setDisplayData(newArr);
     }
     const filterBySector=(types)=>{
-      setDisplayData(currentData)
+      setDisplayData(data)
       if(types.includes('other'))
       return;
       let newArr=data.filter(entry=>{
@@ -116,7 +116,7 @@ console.log('Data: ',data);
 //console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
-const paginate = pageNumber => setCurrentPage(pageNumber);
+// const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
   return(
@@ -202,11 +202,11 @@ const paginate = pageNumber => setCurrentPage(pageNumber);
     </div>
   
   </div>
-        <Pagination 
+        {/* <Pagination 
         entriesPerPage={entriesPerPage}
         totalData={data.length}
         paginate={paginate}
-        />
+        /> */}
             
         </div>
     )

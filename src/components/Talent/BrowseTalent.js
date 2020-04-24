@@ -14,10 +14,11 @@ const BrowseTalent=()=>{
     useEffect(()=>{
       
       const fetchData=async()=>{
-        
+        console.log('inside fetch func')
         let arr=[];
        const result=await axios.get('http://3.14.202.69:8000/get_talent_profile')
           .then(res=>{
+          console.log('inside then func')
           console.log('res from talent: ',res.data.data);
           res.data.data.forEach(resData=>{
             arr.push(resData);
@@ -43,7 +44,7 @@ const BrowseTalent=()=>{
         M.Dropdown.init(dropdwn, {});
       })
       const filterBySector=(types)=>{
-        setDisplayData(data)
+        //setDisplayData(data)
         if(types.includes('other'))
         return;
         let newArr=data.filter(entry=>{

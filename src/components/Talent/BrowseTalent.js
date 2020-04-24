@@ -126,7 +126,7 @@ const BrowseTalent=()=>{
                     </div>
                     <div className="col m4 s12 float-right">
                     <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
-                  <i className="material-icons large">sort</i>
+                  <i className="material-icons large">filter_list</i>
                   Filter By Sector</a>
                     <div class="nav-wrapper">
                     <ul id='sector-dropdown' class='dropdown-content'>

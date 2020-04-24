@@ -21,9 +21,9 @@ const Navbar=()=>{
               <li><Link  to="/browse/roles">Browse Opportunities</Link></li>
             </ul>
             <ul id="nav-mobile" className="sidenav black-text">
-              <li><Link  to="/">Home</Link></li>
-              <li><Link to="/browse/talent">Browse Talent</Link></li>
-              <li><Link  to="/browse/roles">Browse Opportunities</Link></li>
+              <li><Link class="sidenav-close" to="/">Home</Link></li>
+              <li><Link class="sidenav-close" to="/browse/talent">Browse Talent</Link></li>
+              <li><Link  class="sidenav-close" to="/browse/roles">Browse Opportunities</Link></li>
             </ul>
             <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           </div>

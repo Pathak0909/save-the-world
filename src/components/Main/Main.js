@@ -11,8 +11,12 @@ import Sharing from 'react-sharing';
 const Main=()=>{
   const url='http://unlocktalenttest.getwork.org';
   useEffect(()=>{
-    var elems = document.querySelectorAll('.modal');
-    M.Modal.init(elems, {});
+    var modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals, {});
+    var selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects, {});
+   var dropdwn = document.querySelectorAll('.dropdown-trigger');
+      M.Dropdown.init(dropdwn, {});
            
 })
     return(
@@ -24,9 +28,9 @@ const Main=()=>{
           <div class="row">
               <div class="col s12 m12">
                 <div class="main-text">
-                 <h2 className="text-bold-extra">GetWork's Covid 19 Initiative</h2>
+                 <h2 className="">GetWork's Covid 19 Initiative</h2>
                   <br/>
-                 <h4 className="text-bold">We're connecting talent affected by layoffs due to Coronavirus, with employers looking to hire.</h4>
+                 <h4 className="">We're connecting talent affected by layoffs due to Coronavirus, with employers looking to hire.</h4>
                   <br/>
 
                 </div>
@@ -34,10 +38,10 @@ const Main=()=>{
       </div>
         </div>
         <br/>
-            <div class="row container">
+            <div class="row box-container container">
         <div class="col s12 m6 btn-box-roles container left">
           <div className="row title-container">
-          <span class="btn-title text-center">For Employers</span>
+          <span class="btn-title text-center title-container">For Employers:</span>
           </div>
           <div className="row">
             <div className="col s12 m5 btn-box">
@@ -54,8 +58,8 @@ const Main=()=>{
         
         </div>
         <div class="col s12 m6 btn-box-talent container right">
-          <div className="row">
-          <span class="btn-title text-center title-container">For Talent</span>
+          <div className="row title-container">
+          <span class="btn-title text-center ">For Talent:</span>
           </div>
           <div className="row">
             <div className="col s12 m5 btn-box">
@@ -79,10 +83,7 @@ const Main=()=>{
       <JobForm></JobForm>
      
     </div>
-    {/* <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div> */}
+  
   </div>
 
   <div id="add-talent" class="modal">
@@ -91,47 +92,34 @@ const Main=()=>{
    
     </div>
   
-    {/* <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div> */}
+ 
   </div>
               <div className="container pref-footer">
               <h6>
               This is a free resource for everyone. Any questions, comments, or collaboration opportunities please 
-              send us an email. Please share this platform with those who can benefit.
+             <u>
+             <a class="email-text black-text" href="mailto:team@getwork.org?subject=Unlock Talent Connect Inquiry"> send us an email</a>
+               </u> 
+              . Please share this platform with those who can benefit.
               </h6>
               </div>
               
-            {/* <div className="social-icons container row">
-             
-          <ul>
-              <li>
-                <a href="" class="btn-floating btn-small  light-blue accent-3" data-tooltip="Instragram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Facebook">
-                        <i class="fab fa-facebook"></i>
-                  </a>
-                  
-              </li>
-              <li>
-                <a href="" class=" btn-floating btn-small  light-blue accent-3" data-tooltip="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-          </ul>
-           
-            </div> */}
-          
-            <Sharing
+        
+          <div className="sharers">
+          <Sharing
                   sites = {[ "facebook","twitter",'linkedin' ]}
                   url = 'http://unlocktalenttest.getwork.org'
-                  title = "GetWork Covid 19 Initiative"
-                  description = "Getwork"
+                  title = "GetWork has created a resource connecting talent affected by 
+                  layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
+                   please share with individuals and companies in our incredible community who can benefit. 
+                   https://unlocktalent.getwork.org/"
+                  description = "GetWork has created a resource connecting talent affected by 
+                  layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
+                   please share with individuals and companies in our incredible community who can benefit. 
+                   https://unlocktalent.getwork.org/"
                 />
+          </div>
+          
 
         </div>
         

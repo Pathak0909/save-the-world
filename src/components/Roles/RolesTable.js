@@ -8,8 +8,8 @@ const RolesTable=({displayData})=>{
         displayData.forEach(el=>{
           //console.log('el: ',el)
           tableData.push(
-             <tr>
-                <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
+             <tr >
+                <td>{moment(el.createdAt).format('l')}</td>
                 <td>{el.company_name}</td>
                 <td>{el.company_sector?el.company_sector:'-'}</td>
                 <td>{el.description}</td>

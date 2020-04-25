@@ -1,12 +1,32 @@
-import React,{useEfect, useState} from 'react';
-
+import React,{useEffect, useState} from 'react';
+import './TalentForm.css';
 import {useAlert} from 'react-alert';
+import M from 'materialize-css';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 const TalentForm=(props)=>{
   //console.log(props.addNewData);
+  const history=useHistory();
   const alert=useAlert();
   const [disableBtn,setDisableBtn]=useState('disabled');
+  useEffect(()=>{
+    // var sel = document.querySelectorAll('select');
+    // M.FormSelect.init(sel, {});
+    // var elems = document.querySelectorAll('.modal');
+    // M.Modal.init(elems, {dismissible:false});
+    // var dropdwn = document.querySelectorAll('.dropdown-trigger');
+    // M.Dropdown.init(dropdwn, {});
+    // var elems = document.querySelectorAll('select');
+    //     M.FormSelect.init(elems, {});
+    // var modal = document.querySelectorAll('.modal');
+    // M.Modal.init(modal, {});
+    var select = document.querySelectorAll('select');
+    M.FormSelect.init(select, {});
+    var dropdwn = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdwn, {});
+  })
+ 
   const initState={
     name:'',
     status:'',
@@ -24,6 +44,7 @@ const TalentForm=(props)=>{
     const [Data,setData]=useState(initState);
     const handleChange=(e)=>{
       //console.log('here inside handle change');
+      e.preventDefault();
       setData({
         ...Data,
         [e.target.id]:e.target.value
@@ -51,14 +72,17 @@ const TalentForm=(props)=>{
       
       //document.querySelector('form').reset();
       if(!validate()){
-      console.log('sending data');
-      props.addNewData(Data);
+      console.log('sending data: ',Data);
+      //props.addNewData(Data);
       sendData();
       document.querySelector('form').reset();
       setTimeout(()=>{
+        if(history.location.pathname=='/')
+      history.push('/browse/talent')
+      else
         window.location.reload(true);
-      },1000);
-      alert.success('Profile added! Please refresh page to see updates');
+      },3000);
+      alert.success('Profile added successfully!');
       return;
       }
       else{
@@ -69,6 +93,7 @@ const TalentForm=(props)=>{
     }
     const sendData=()=>{
       axios.post('http://3.14.202.69:8000/add_talent_profile',{
+          createdAt:new Date(),
           name:Data.name,
           is_student:Data.status=='student'?1:0,
           college_name:Data.college_name,
@@ -99,78 +124,131 @@ const TalentForm=(props)=>{
   }
     return(
         <div className="talent-form">
-        <h6 className="text-bold-extra left">Add your details
-      
-      </h6>
-  
-        <p className="left"> &nbsp; (All fields are mandatory)</p>
-        <br/>
-        {/* <div className="row error-msg hide">
-          <p style={{color:"red"}} class="center-align error-msg hide">Please fill all the fields</p>
-        </div> */}
+          <div className="row form-desc-box">
+          <h6 className="text-bold-extra left">Add Yourself</h6>
+          </div>
+       
+         
+       <div className="row form-desc-box">
+         
+       <p className="left">(All fields are mandatory)
+        </p>
+    </div>
+       
       <div className="row">
         
           <form className="col s12" onChange={handleChange}>
             <div className="row">
               <div className="input-field inline col s6">
+              <select id="sector" type="text" className="validate">
+              <option value="" disabled selected>Sector</option>
+              <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
+              <option value="Engineering/Product/Design">Engineering/Product/Design</option>
+              <option value="Finance/Ops/Analytics">Finance/Ops/Analytics</option>
+              <option value="Retail Services">Retail Services</option>
+              <option value="Other">Other</option>
+            </select>
+             
+                 {/* <input id="sector" type="text" className="validate" />
+                <label htmlFor="sector">Sector</label> */}
+              </div>
+              <div className="input-field inline col s6">
                 <input  id="name" type="text" className="validate" />
                 <label htmlFor="name">Name</label>
               </div>
-              <div className="input-field inline col s6">
-                <div className="row">
-                  <div className="col m2">
-                    <label><h6>Currently</h6></label>
-                  </div>
-                </div>
-              <div className="col s12 m5">
-                 
-              <label>
-                  <input id="status" name="group1" type="radio" value="working" className="validate"/>
-                  <span>Working</span>
-              </label>
               </div>
-             <div className="col s12 m5 ">
-             <label>
-                  <input  id="status" name="group1" type="radio" value="student" className="validate"/>
-                  <span>Student</span>
-             </label>
-             </div>
-              
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field inline col s6">
-                <input  id="college_name" type="text" className="validate" />
-                <label htmlFor="college_name">College Name</label>
-              </div>
-              <div className="input-field inline col s6">
-                <input  id="company_name" type="text" className="validate" />
-                <label htmlFor="company_name">Company Name</label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s6">
-                <input id="specialization" type="text" className="validate" />
-                <label htmlFor="specialization">Specialization</label>
-              </div>
-              <div className="input-field col s6">
-                <input id="sector" type="text" className="validate" />
-                <label htmlFor="sector">Sector</label>
-              </div>
+              <div className="row hiring-box">
             
+                    <div className="input-field inline col s12 ">
+                        <div className="row">
+                          <div className="col m2 s2">
+                            <label><span className="lg-text">Currently:</span></label>
+                          </div>
+                        
+                      <div className="col s5 m2">
+                        
+                      <label>
+                      <input id="status" name="group1" type="radio" value="working" className="validate"/>
+                          <span>Working</span>
+                      </label>
+                      </div>
+                    <div className="col s5 m3 ">
+                    <label>
+                    <input  id="status" name="group1" type="radio" value="student" className="validate"/>
+                          <span>Studying</span>
+                    </label>
+                    </div>
+                      </div>
+                      </div>
+              </div>
+    
+            <div className="row hide-on-small-only">
+              <div className="input-field inline col s6">
+                <input  id="college_name" type="text" className="validate" maxLength="50" />
+                <label htmlFor="college_name">Current (or former) College Name</label>
+              </div>
+              <div className="input-field inline col s6">
+              
+                <input id="specialization" type="text" className="validate" />
+                <label htmlFor="specialization">Course & Branch</label>
+           
+                
+              </div>
             </div>
+            <div className="show-on-small hide-on-med-and-up">
             <div className="row">
+              <div className="input-field inline col s12">
+                <input  id="college_name" type="text" className="validate"  maxLength="50"/>
+                <label htmlFor="college_name">Current (or former) College Name</label>
+              </div>
+              </div>
+              <div className="row">
+              <div className="input-field inline col s12">
+              
+              <input id="specialization" type="text" className="validate" />
+              <label htmlFor="specialization">Course & Branch</label>
+         
+              
+            </div>
+              </div>
+             
+            </div>
+            
+            
+            <div className="row hide-on-small-only">
+              <div className="input-field col s6">
+              <input  id="company_name" type="text" className="validate"  maxLength="50" />
+                <label htmlFor="company_name">Current (or former) Company Name</label>
+              </div>
               <div className="input-field col s12 m6">
                 <input  id="role" type="text" className="validate" />
                 <label htmlFor="role">Role</label>
               </div>
-           
-              <div className="input-field col s12 m6">
-                <input  id="location" type="text" className="validate" />
-                <label htmlFor="location">Location</label>
+            </div>
+            <div className="show-on-small hide-on-med-and-up">
+              <div className="row">
+              <div className="input-field col s12">
+              <input  id="company_name" type="text" className="validate"  maxLength="50" />
+                <label htmlFor="company_name">Current (or former) Company Name</label>
               </div>
+              </div>
+              <div className="row">
+              <div className="input-field col s12 m6">
+                <input  id="role" type="text" className="validate" />
+                <label htmlFor="role">Role</label>
+              </div>
+              </div>
+             
             </div>
             <div className="row">
+             
+           
+              <div className="input-field col s6 m6">
+                <input  id="location" type="text" className="validate" />
+                <label htmlFor="location">City</label>
+              </div>
+            
+           
               <div className="input-field col s6">
               <label>
                   <input id="open_to_relocating" type="checkbox" class="filled-in" value="Yes" className="validate"/>
@@ -178,16 +256,32 @@ const TalentForm=(props)=>{
               </label>
                 
               </div>
-              <div className="input-field col s6">
+            </div>
+            <div className="row">
+              <div className="input-field col s4">
                       <div class="file-field input-field">
                       <div class="btn">
-                          <span>Resume</span>
-                          <input type="file" id="resume_url"/>
+                          <span>Upload Resume</span>
+                          <input type="file" id="resume_url" onChange={handleChange}/>
                       </div>
                       <div class="file-path-wrapper">
                           <input class="file-path validate" type="text" onChange={handleChange}/>
                       </div>
                   </div>
+                      
+              </div>
+              <div className="col s2 input-field inline">
+               <label> Or</label>
+              </div>
+              <div className="input-field inline col s6">
+                    
+              <input type="text" id="resume_url" onChange={handleChange} placeholder="Enter LinkedIn Url"/>               
+               {/* <label htmlFor="resume_url">Enter LinkedIn Url</label> */}
+                                     
+                   
+
+                    
+                
              
               </div>
             </div>

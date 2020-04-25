@@ -24,7 +24,7 @@ const BrowseTalent=()=>{
           res.data.data.forEach(resData=>{
             arr.push(resData);
           })
-         
+         arr.reverse();
           })
           .catch(err=>{
             console.log(err);
@@ -44,6 +44,7 @@ const BrowseTalent=()=>{
         var dropdwn = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdwn, {});
       })
+
       const filterBySector=(types)=>{
         //setDisplayData(data)
         if(types.includes('other'))
@@ -77,6 +78,15 @@ const BrowseTalent=()=>{
       console.log('Data after sorting: ',temp);
       setDisplayData(temp);
       }
+      const sortRecent=(field)=>{
+        console.log(`sorting by ${field}`);
+        let temp=[...displayData];
+       temp.sort(function(a, b){
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      })
+      console.log('after sorting: ',temp);
+      setDisplayData(temp);
+      }
       const addNewData=(newEntry)=>{
         console.log('inside this: ',newEntry);
         let temp=[...data,newEntry]
@@ -96,19 +106,19 @@ const BrowseTalent=()=>{
             <div className=" title-box">
                 <div className="row">
                     <div className="col m4 s12 float-left">
-                        <a className="btn modal-trigger" href="#add-talent">
+                    <a className="btn modal-trigger" href="#add-talent">
                         ADD YOURSELF</a>
+
                     </div>
-                    <div className="col m4 s12 center-align">
-                        <h5 className="">Talent Affected by Covid19</h5>
+                    <div className="col m4 s12 neg-mg-2">
+                        <h2 className="">Talent Affected by Covid19</h2>
                     </div>
-                    <div className="col m4 s12 float-right">
-                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
-                  <i className="material-icons large">filter_list</i>
+                    <div className="col m4 s12 float-right neg-mg">
+                    <a class='dropdown-trigger btn btn-reg filter-btn' href='#' data-target='sector-dropdown'>
+                  <i className="material-icons small left">filter_list</i>
                   Filter By Sector</a>
                     <div class="nav-wrapper">
                     <ul id='sector-dropdown' class='dropdown-content'>
-                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
                       <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
                       <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
                       <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
@@ -124,11 +134,11 @@ const BrowseTalent=()=>{
                     
                 </div>
                 <div className="row">
-                <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
-                <i className="material-icons large">sort</i>Sort By</a>
+                <a class='dropdown-trigger btn btn-reg filter-btn' href='#' data-target='dropdown1'>
+                <i className="material-icons small left">sort</i>Sort By</a>
 
                     <ul id='dropdown1' class='dropdown-content'>
-                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{sortRecent('createdAt')}}>Date</a></li>
                       <li><a onClick={()=>{sortAlphabetically('name')}}>Name</a></li>
                       <li><a onClick={()=>{sortAlphabetically('college_name')}}>College</a></li>
                       <li><a onClick={()=>{sortAlphabetically('sepcialization')}}>Specialization</a></li>
@@ -139,13 +149,13 @@ const BrowseTalent=()=>{
                       
                     </ul>
 
-                        <a className="btn filter-btn" onClick={()=>{filter(true)}} >
-                        <i className="material-icons large">filter_list</i>Filter Students</a>
+                        <a className="btn btn-reg filter-btn" onClick={()=>{filter(true)}} >
+                        <i className="material-icons small left">filter_list</i>Filter Students</a>
                     
-                        <a className="btn filter-btn " onClick={()=>{filter(false)}} >
-                        <i className="material-icons large">filter_list</i>Filter Working</a>
+                        <a className="btn btn-reg filter-btn " onClick={()=>{filter(false)}} >
+                        <i className="material-icons small left">filter_list</i>Filter Working</a>
                        
-                        <a className="btn" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
+                        <a className="btn btn-reg" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
                   </div>
             </div>
     

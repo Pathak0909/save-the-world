@@ -29,7 +29,7 @@ const BrowseRoles=()=>{
         res.data.data.forEach(resData=>{
           arr.push(resData);
         })
-       
+       arr.reverse()
         })
         .catch(err=>{
           console.log(err);
@@ -47,11 +47,12 @@ const BrowseRoles=()=>{
       // setDisplayData(currentData);
     },[])
     useEffect(()=>{
-        var elems = document.querySelectorAll('.modal');
-        M.Modal.init(elems, {});
-        var dropdwn = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(dropdwn, {});
-        //setDisplayData(currentData);
+      var sel = document.querySelectorAll('select');
+      M.FormSelect.init(sel, {});
+      var elems = document.querySelectorAll('.modal');
+      M.Modal.init(elems, {});
+      var dropdwn = document.querySelectorAll('.dropdown-trigger');
+      M.Dropdown.init(dropdwn, {});
     })
     // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
     // pageNumbers.push(i);
@@ -68,6 +69,15 @@ const BrowseRoles=()=>{
         if(a[field] < b[field]) { return -1; }
         if(a[field] > b[field]) { return 1; }
         return 0;
+    })
+    console.log('after sorting: ',temp);
+    setDisplayData(temp);
+    }
+    const sortRecent=(field)=>{
+      console.log(`sorting by ${field}`);
+      let temp=[...displayData];
+     temp.sort(function(a, b){
+      return new Date(b.createdAt) - new Date(a.createdAt);
     })
     console.log('after sorting: ',temp);
     setDisplayData(temp);
@@ -108,40 +118,23 @@ console.log('Data: ',data);
                <div className="browse_roles">
             <div className="title-box">
                 <div className="row">
-                    <div className="col m4 s12 float-left">
+                    <div className="col m4 lg4 s12 float-left">
                         <a className="btn modal-trigger" href="#job-post">Post a Job</a>
                     </div>
-                    <div className="col m4 s12 center-align">
-                        <h5 className="">Companies Hiring and Open Roles</h5>
+                    <div className="col m4 lg4 s12 center-align neg-mg-2">
+                        <h2 className="">Companies Hiring and Open Roles</h2>
                     </div>
-                    <div className="col m4 s12 float-right">
-                    <a class='dropdown-trigger btn filter-btn' href='#' data-target='sector-dropdown'>
-                  <i className="material-icons large">filter_list</i>
-                  Filter By Sector</a>
-                    <div class="nav-wrapper">
-                    <ul id='sector-dropdown' class='dropdown-content'>
-                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
-                      <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
-                      <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
-                      <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
-                      <li><a onClick={()=>{filterBySector(['retail services'])}}>Retail Services</a></li>
-                      <li><a onClick={()=>{filterBySector(['other'])}}>Other</a></li>
-                    
-                      
-                    </ul>
-                            </div>
-                    </div>
-                    
+                  
                    
                     
                 </div>
                 <div className="row">
                 <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
-                  <i className="material-icons large">sort</i>
+                  <i className="material-icons small left">sort</i>
                   Sort By</a>
 
                     <ul id='dropdown1' class='dropdown-content'>
-                      {/* <li><a onClick={()=>{sortAlphabetically('date')}}>Date</a></li> */}
+                      <li><a onClick={()=>{sortRecent('createdAt')}}>Date Posted</a></li>
                       <li><a onClick={()=>{sortAlphabetically('company_name')}}>Company</a></li>
                       <li><a onClick={()=>{sortAlphabetically('company_sector')}}>Sector</a></li>
                       <li><a onClick={()=>{sortAlphabetically('job_role')}}>Role</a></li>
@@ -151,10 +144,10 @@ console.log('Data: ',data);
                     </ul>
 
                         <a className="btn filter-btn" onClick={()=>{filter(true)}} >
-                        <i className="material-icons large">filter_list</i>Filter Interns</a>
+                        <i className="material-icons small left">filter_list</i>Filter Interns</a>
                     
                         <a className="btn filter-btn " onClick={()=>{filter(false)}} >
-                        <i className="material-icons large">filter_list</i>Filter Full Time</a>
+                        <i className="material-icons small left">filter_list</i>Filter Full Time</a>
                         <a className="btn" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
 
                   </div>

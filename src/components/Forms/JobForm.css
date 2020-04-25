@@ -1,0 +1,19 @@
+.job-form p{
+    text-align: left;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+
+}
+
+.form-desc-box{
+    margin-bottom: 0 !important;
+}
+
+.lg-text{
+    font-size: 1.05rem !important;
+    margin-left: -12px !important;
+}
+
+.hiring-box{
+    margin-bottom: 0px;
+}

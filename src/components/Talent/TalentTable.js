@@ -9,7 +9,7 @@ const TalentTable=({displayData})=>{
           //console.log('el: ',el)
           tableData.push(
              <tr>
-                <td>{moment(el.createdAt).subtract(10, 'days').calendar()}</td>
+                <td>{moment(el.createdAt).format('l')}</td>
                 <td>{el.name}</td>
                 <td>{el.is_student?'Student':'Working'}</td>
                 <td>{el.college_name}</td>
@@ -29,7 +29,7 @@ const TalentTable=({displayData})=>{
       }
     return(
                     <div className="table container">
-            <table className="responsive striped centered">
+            <table className="responsive striped table-fixedheader">
         <thead>
           <tr>
               <th>Date Added</th>

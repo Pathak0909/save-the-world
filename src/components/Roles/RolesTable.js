@@ -26,7 +26,7 @@ const RolesTable=({displayData})=>{
       }
     return(
         <div className="table container">
-            <table className="responsive striped">
+            <table className="responsive striped centered">
         <thead>
           <tr className="field-names">
               <th> Date Posted  </th>

@@ -29,7 +29,7 @@ const TalentTable=({displayData})=>{
       }
     return(
                     <div className="table container">
-            <table className="responsive striped">
+            <table className="responsive striped centered">
         <thead>
           <tr>
               <th>Date Added</th>

@@ -87,14 +87,18 @@ table.striped>tbody>tr:nth-child(odd) {
 th,tr{
   margin: 5px 20px;
   width: 400px;
+  
 }
 th{
   font-size: 14px;
   text-align: left;
+  font-weight: 500;
+  padding-left: 20px;
 }
 td{
   font-size: 13px;
   text-align: left;
+  padding-left: 20px;
 }
 
 

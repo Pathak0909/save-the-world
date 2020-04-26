@@ -9,7 +9,7 @@ import './JobForm.css';
 const JobForm=()=>{
   const history=useHistory();
   const { register, watch, errors } = useForm();
-  const [disableBtn,setDisableBtn]=useState('');
+  const [disableBtn,setDisableBtn]=useState('disabled');
   const alert=useAlert();
   useEffect(()=>{
     // var modal = document.querySelectorAll('.modal');
@@ -39,9 +39,9 @@ const JobForm=()=>{
           ...Data,
           [e.target.id]:e.target.value
       })
-      //console.log('details',Data)
-      // if(!validate())
-      // setDisableBtn('');
+      console.log('details',Data)
+      if(!validate())
+      setDisableBtn('');
 
   }
   const sendData=()=>{
@@ -86,19 +86,19 @@ const JobForm=()=>{
     e.preventDefault();
     
     //document.querySelector('form').reset();
-    if(validate()){
+    if(!validate()){
     console.log('sending data: ',Data);
     
-    //sendData();
+    sendData();
     document.querySelector('form').reset();
-    // setTimeout(()=>{
-    //   if(history.location.pathname=='/')
-    //   history.push('/browse/roles')
-    //   else
-    //   window.location.reload(true);
-    // },3000);
-    alert.success(<div style={{ backgroundColor: '#0BAAC3;' }}>Job added successfully!</div>)
-    // alert.success('Job added successfully!');
+    setTimeout(()=>{
+      if(history.location.pathname=='/')
+      history.push('/browse/roles')
+      else
+      window.location.reload(true);
+    },3000);
+    // alert.success(<div style={{ backgroundColor: '#0BAAC3;' }}>Job added successfully!</div>)
+     alert.success('Job added successfully!');
     return;
     }
     else{

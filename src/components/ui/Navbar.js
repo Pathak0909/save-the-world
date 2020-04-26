@@ -11,6 +11,8 @@ const Navbar=()=>{
       <div className="navbar">
       <nav className="" role="navigation">
           <div className="nav-wrapper container">
+          <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+
           <Link to="/" class="brand-logo left">
              <img src="https://getwork.org/wp-content/uploads/2019/12/getwork_new.png" width="57px" alt="Jobs &amp; Internships for College Students | GetWork"/>
   
@@ -25,7 +27,6 @@ const Navbar=()=>{
               <li><Link class="sidenav-close" to="/browse/talent">Browse Talent</Link></li>
               <li><Link  class="sidenav-close" to="/browse/roles">Browse Opportunities</Link></li>
             </ul>
-            <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           </div>
         </nav>
         {/* <nav>

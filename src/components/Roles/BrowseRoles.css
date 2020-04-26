@@ -2,27 +2,13 @@
     margin-top: 20px;
 }
 
-
-/* .field-names{
-    top: 0;
-    left: 0;
-    z-index: 2;
-    position: sticky;
-
-} */
 .neg-mg{
-    margin-top: -10px;
+    position: relative;
+    top: -10px;
 }
 
 .neg-mg-2{
-    margin-top: -27px;
+    position: relative;
+    top: -27px;
 }
 
-/* table.centered thead tr th, table.centered tbody tr td {
-    text-align: left !important;
-} */
-
-
-/* .search-wrapper{
-    background: #0BAAC3;
-} */

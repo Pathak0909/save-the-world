@@ -11,11 +11,11 @@ const TalentTable=({displayData})=>{
              <tr>
                 <td>{moment(el.createdAt).format('l')}</td>
                 <td>{el.name}</td>
+                <td>{el.company_sector}</td>
                 <td>{el.is_student?'Student':'Working'}</td>
                 <td>{el.college_name}</td>
                 <td>{el.specialization}</td>
                 <td>{el.company_name}</td>
-                <td>{el.company_sector}</td>
                 <td>{el.role}</td>
                 <td>{el.city}</td>
                 <td>{el.is_relocation?'Yes':'No'}</td>
@@ -34,11 +34,11 @@ const TalentTable=({displayData})=>{
           <tr className="field-names">
               <th>Date Added</th>
               <th>Name</th>
+              <th>Sector</th>
               <th>Studying/Working</th>
               <th>College Name</th>
-              <th>Specialization</th>
+              <th>Course/Branch</th>
               <th>Company</th>
-              <th>Sector</th>
               <th>Role/Title</th>
               <th>City</th>
               <th>Open to Relocating?</th>

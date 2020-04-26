@@ -123,16 +123,26 @@ const BrowseTalent=()=>{
         <div className="browse_talent">
  
             <div className=" title-box">
-                <div className="row">
-                    <div className="col m4 s12 float-left" >
-                    <a className="btn modal-trigger" data-target="add-talent" href="#" >
+            <div className="row hide-on-med-and-up">
+                    <div className="col l4 m4 s12" >
+                      
+                    <a className="btn modal-trigger" data-target="add-talent" href="#add-talent" >
                         <span>ADD YOURSELF</span></a>
-
+                    
                     </div>
-                    <div className="col m4 s12 neg-mg-2">
+                  </div>
+                <div className="row">
+                    <div className="col l4 m4 s12 hide-on-small-only" >
+                      
+                    <a className="btn modal-trigger" data-target="add-talent" href="#add-talent" >
+                        <span>ADD YOURSELF</span></a>
+                    
+                    </div>
+                  
+                    <div className="col l4 m4 s12 neg-mg-2">
                         <h2 className="">Talent Affected by Covid19</h2>
                     </div>
-                    <div className="col m4 s12 float-right neg-mg">
+                    <div className="col l4 m4 s12 neg-mg">
                     <a class='dropdown-trigger btn btn-reg filter-btn' href='#' data-target='sector-dropdown'>
                   <i className="material-icons small left">filter_list</i>
                   Filter By Sector</a>
@@ -149,7 +159,7 @@ const BrowseTalent=()=>{
                             </div>
                     </div>
                     
-                   
+                  </div>
                     
                 </div>
                 <div className="row">
@@ -176,7 +186,7 @@ const BrowseTalent=()=>{
                        
                         <a className="btn btn-reg" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
                   </div>
-            </div>
+            {/* </div> */}
     
             <TalentTable displayData={displayData}/>
 

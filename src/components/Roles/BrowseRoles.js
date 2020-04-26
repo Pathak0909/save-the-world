@@ -131,7 +131,12 @@ console.log('Data: ',data);
                <div className="browse_roles">
             <div className="title-box">
                 <div className="row">
-                    <div className="col m4 lg4 s12 float-left">
+                    <div className="col m4 lg4 s12 float-left hide-on-med-and-up">
+                        <a className="btn modal-trigger" href="#job-post">Post a Job</a>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col m4 lg4 s12 float-left hide-on-small-only">
                         <a className="btn modal-trigger" href="#job-post">Post a Job</a>
                     </div>
                     <div className="col m4 lg4 s12 center-align neg-mg-2">

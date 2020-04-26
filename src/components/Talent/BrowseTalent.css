@@ -4,12 +4,14 @@
 
 .filter-btn{
     margin: 10px;
-    /* padding: 10px; */
+    
 }
 
 .neg-mg{
-    margin-top: -10px;
+    position: relative;
+ top: -10px;
 }
 .neg-mg-2{
-    margin-top: -27px;
+    position: relative;
+    top: -27px;
 }

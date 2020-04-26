@@ -113,7 +113,7 @@ const search=(e)=>{
     if(
       entry.city.toLowerCase().includes(searchParam) ||
       entry.company_sector.toLowerCase().includes(searchParam) ||
-      entry.city.toLowerCase().includes(searchParam)
+      entry.company_name.toLowerCase().includes(searchParam)
     ) return entry;
   })
   setDisplayData(newArr);

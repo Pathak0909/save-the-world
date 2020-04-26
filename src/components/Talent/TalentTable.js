@@ -13,8 +13,8 @@ const TalentTable=({displayData})=>{
                 <td>{el.name}</td>
                 <td>{el.is_student?'Student':'Working'}</td>
                 <td>{el.college_name}</td>
-                <td>{el.specialization}</td>
-                <td>-</td>
+                <td className="fixed-width">{el.specialization}</td>
+                <td>{el.company_name}</td>
                 <td>{el.company_sector}</td>
                 <td>{el.role}</td>
                 <td>{el.city}</td>
@@ -31,12 +31,12 @@ const TalentTable=({displayData})=>{
                     <div className="table container">
             <table className="responsive striped table-fixedheader">
         <thead>
-          <tr>
+          <tr className="field-names">
               <th>Date Added</th>
               <th>Name</th>
               <th>Studying/Working</th>
               <th>College Name</th>
-              <th>Specialization</th>
+              <th className="fixed-width">Specialization</th>
               <th>Company</th>
               <th>Sector</th>
               <th>Role/Title</th>

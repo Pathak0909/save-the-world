@@ -1,7 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import moment from 'moment';
+import M from 'materialize-css';
 
 const RolesTable=({displayData})=>{
+    useEffect(()=>{
+        var elems = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(elems,{});
+    })
     let tableData=[];
     if(displayData.length>0){
         //console.log('data: ',arr,'type of ',typeof(arr));
@@ -17,6 +22,7 @@ const RolesTable=({displayData})=>{
                 <td>{el.hiring_type}</td>
                 <td>{el.city}</td>
                 <td>{el.point_of_contact}</td>
+                {/* <td className="tooltipped truncate" data-position="bottom" data-tooltip={el.job_link} >{el.job_link}</td> */}
                 <td>{el.job_link}</td>
                
               </tr>
@@ -26,8 +32,8 @@ const RolesTable=({displayData})=>{
       }
     return(
         <div className="table container">
-            <table className="responsive striped centered">
-        <thead>
+            <table className="responsive striped ">
+        <thead id="fixedContainer">
           <tr className="field-names">
               <th> Date Posted  </th>
               <th>Company</th>

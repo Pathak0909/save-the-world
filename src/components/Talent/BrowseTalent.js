@@ -105,9 +105,9 @@ const BrowseTalent=()=>{
  
             <div className=" title-box">
                 <div className="row">
-                    <div className="col m4 s12 float-left">
-                    <a className="btn modal-trigger" href="#add-talent">
-                        ADD YOURSELF</a>
+                    <div className="col m4 s12 float-left" >
+                    <a className="btn modal-trigger" data-target="add-talent" href="#" >
+                        <span>ADD YOURSELF</span></a>
 
                     </div>
                     <div className="col m4 s12 neg-mg-2">

@@ -56,9 +56,9 @@ nav ul a{
   margin: 5px;
 }
 
-.modal .modal-content{
+/* .modal .modal-content{
   background: #ffffff !important;
-}
+} */
 
 h2{
   font-weight: bold;
@@ -69,27 +69,34 @@ table.striped>tbody>tr:nth-child(odd) {
   background-color: #EEEEEE !important;
 }
 
-/* th{
-  font-weight: 500;
+table{
+  width: 100% !important;
+  
 }
-*/
 .table{
-  
-  width: 100%;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  
+  height: 400px !important;
+  width: auto !important;
+  /* overflow-x: scroll; */
+  overflow-y: auto !important;
   height: 400px;
   background: #ffffff;
 }
 
+table,thead,tr,th{
+  position: sticky;
+  top: 0px;
+  background-color: #ffffff;
+}
 
 th,tr{
   margin: 5px 20px;
-  width: 400px;
+  max-width: 150px;
+  /* width: 400px; */
   
 }
+
 th{
+  
   font-size: 14px;
   text-align: left;
   font-weight: 500;
@@ -99,8 +106,12 @@ td{
   font-size: 13px;
   text-align: left;
   padding-left: 20px;
+
 }
 
+td,th{
+  max-width: 200px;
+}
 
 table.centered thead tr th, table.centered tbody tr td {
   text-align: left !important;
@@ -113,7 +124,7 @@ table.centered thead tr th, table.centered tbody tr td {
 } */
 /* thead, tbody tr {
   display:table;
-  width:100%;
+  width:90px;
   table-layout:fixed;
 } */
 

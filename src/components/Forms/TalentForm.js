@@ -11,16 +11,8 @@ const TalentForm=(props)=>{
   const alert=useAlert();
   const [disableBtn,setDisableBtn]=useState('disabled');
   useEffect(()=>{
-    // var sel = document.querySelectorAll('select');
-    // M.FormSelect.init(sel, {});
     // var elems = document.querySelectorAll('.modal');
-    // M.Modal.init(elems, {dismissible:false});
-    // var dropdwn = document.querySelectorAll('.dropdown-trigger');
-    // M.Dropdown.init(dropdwn, {});
-    // var elems = document.querySelectorAll('select');
-    //     M.FormSelect.init(elems, {});
-    // var modal = document.querySelectorAll('.modal');
-    // M.Modal.init(modal, {});
+    // M.Modal.init(elems, {});
     var select = document.querySelectorAll('select');
     M.FormSelect.init(select, {});
     var dropdwn = document.querySelectorAll('.dropdown-trigger');

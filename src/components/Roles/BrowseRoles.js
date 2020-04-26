@@ -66,8 +66,9 @@ const BrowseRoles=()=>{
       console.log(`sorting by ${field}`);
       let temp=[...displayData];
      temp.sort(function(a, b){
-        if(a[field] < b[field]) { return -1; }
-        if(a[field] > b[field]) { return 1; }
+      
+        if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
+        if(a[field].toLowerCase() > b[field].toLowerCase()) { return 1; }
         return 0;
     })
     console.log('after sorting: ',temp);
@@ -124,7 +125,13 @@ console.log('Data: ',data);
                     <div className="col m4 lg4 s12 center-align neg-mg-2">
                         <h2 className="">Companies Hiring and Open Roles</h2>
                     </div>
-                  
+                    <div class="input-field col m4 lg4 s12 float-right ">
+                        {/* <input id="search" type="search" required/>
+                        <label class="label-icon" for="search">
+                          <i class="material-icons">search</i>
+                        </label>
+                        <i class="material-icons">close</i> */}
+                   </div>
                    
                     
                 </div>

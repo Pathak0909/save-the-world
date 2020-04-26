@@ -9,7 +9,7 @@ import './JobForm.css';
 const JobForm=()=>{
   const history=useHistory();
   const { register, watch, errors } = useForm();
-  const [disableBtn,setDisableBtn]=useState('disabled');
+  const [disableBtn,setDisableBtn]=useState('');
   const alert=useAlert();
   useEffect(()=>{
     // var modal = document.querySelectorAll('.modal');
@@ -40,8 +40,8 @@ const JobForm=()=>{
           [e.target.id]:e.target.value
       })
       //console.log('details',Data)
-      if(!validate())
-      setDisableBtn('');
+      // if(!validate())
+      // setDisableBtn('');
 
   }
   const sendData=()=>{
@@ -86,18 +86,19 @@ const JobForm=()=>{
     e.preventDefault();
     
     //document.querySelector('form').reset();
-    if(!validate()){
+    if(validate()){
     console.log('sending data: ',Data);
     
-    sendData();
+    //sendData();
     document.querySelector('form').reset();
-    setTimeout(()=>{
-      if(history.location.pathname=='/')
-      history.push('/browse/roles')
-      else
-      window.location.reload(true);
-    },3000);
-    alert.success('Job added successfully!');
+    // setTimeout(()=>{
+    //   if(history.location.pathname=='/')
+    //   history.push('/browse/roles')
+    //   else
+    //   window.location.reload(true);
+    // },3000);
+    alert.success(<div style={{ backgroundColor: '#0BAAC3;' }}>Job added successfully!</div>)
+    // alert.success('Job added successfully!');
     return;
     }
     else{
@@ -124,7 +125,7 @@ const JobForm=()=>{
             <div className="input-field col s6">
               <input  id="company" type="text" name="company" required="" aria-required="true" className="validate"
               maxLength="50"
-              ref={register({ required: true})}
+              required="" aria-required="true"
                />
               <label data-error="wrong" data-success="right" htmlFor="company">Company</label>
               {/* <span class="helper-text" data-error="wrong" data-success="right">Please fill this field</span> */}

@@ -119,7 +119,6 @@ const TalentForm=(props)=>{
           <div className="row form-desc-box">
           <h6 className="text-bold-extra left">Add Yourself</h6>
           </div>
-       
          
        <div className="row form-desc-box">
          
@@ -145,7 +144,7 @@ const TalentForm=(props)=>{
                 <label htmlFor="sector">Sector</label> */}
               </div>
               <div className="input-field inline col s6">
-                <input  id="name" type="text" className="validate" />
+                <input  id="name" type="text" className="validate"  required="" aria-required="true" />
                 <label htmlFor="name">Name</label>
               </div>
               </div>
@@ -160,7 +159,7 @@ const TalentForm=(props)=>{
                       <div className="col s5 m2">
                         
                       <label>
-                      <input id="status" name="group1" type="radio" value="working" className="validate"/>
+                      <input id="status" name="group1" type="radio" value="working" className="validate" />
                           <span>Working</span>
                       </label>
                       </div>
@@ -181,7 +180,7 @@ const TalentForm=(props)=>{
               </div>
               <div className="input-field inline col s6">
               
-                <input id="specialization" type="text" className="validate" />
+                <input id="specialization" type="text" className="validate"  />
                 <label htmlFor="specialization">Course & Branch</label>
            
                 
@@ -190,14 +189,14 @@ const TalentForm=(props)=>{
             <div className="show-on-small hide-on-med-and-up">
             <div className="row">
               <div className="input-field inline col s12">
-                <input  id="college_name" type="text" className="validate"  maxLength="50"/>
+                <input  id="college_name" type="text" className="validate"  maxLength="50"  />
                 <label htmlFor="college_name">Current (or former) College Name</label>
               </div>
               </div>
               <div className="row">
               <div className="input-field inline col s12">
               
-              <input id="specialization" type="text" className="validate" />
+              <input id="specialization" type="text" className="validate"  />
               <label htmlFor="specialization">Course & Branch</label>
          
               
@@ -220,7 +219,7 @@ const TalentForm=(props)=>{
             <div className="show-on-small hide-on-med-and-up">
               <div className="row">
               <div className="input-field col s12">
-              <input  id="company_name" type="text" className="validate"  maxLength="50" />
+              <input  id="company_name" type="text" className="validate"  maxLength="50"  required="" aria-required="true" />
                 <label htmlFor="company_name">Current (or former) Company Name</label>
               </div>
               </div>
@@ -236,7 +235,7 @@ const TalentForm=(props)=>{
              
            
               <div className="input-field col s6 m6">
-                <input  id="location" type="text" className="validate" />
+                <input  id="location" type="text" className="validate"  required="" aria-required="true"/>
                 <label htmlFor="location">City</label>
               </div>
             
@@ -279,12 +278,12 @@ const TalentForm=(props)=>{
             </div>
             <div className="row">
               <div className="input-field col s6">
-                <input  id="email" type="email" className="validate" />
+                <input  id="email" type="email" className="validate"  required="" aria-required="true"/>
                 <label htmlFor="email">Email</label>
               </div>
            
               <div className="input-field col s6">
-                <input  id="phone" type="number" className="validate" />
+                <input  id="phone" type="number" className="validate" min="1000000000" max="9999999999"  required="" aria-required="true"/> 
                 <label htmlFor="phone">Phone No.</label>
               </div>
             </div>

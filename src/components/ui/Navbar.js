@@ -11,10 +11,10 @@ const Navbar=()=>{
       <div className="navbar">
       <nav className="" role="navigation">
           <div className="nav-wrapper container">
-          <a href="#" class="brand-logo left">
+          <Link to="/" class="brand-logo left">
              <img src="https://getwork.org/wp-content/uploads/2019/12/getwork_new.png" width="57px" alt="Jobs &amp; Internships for College Students | GetWork"/>
   
-          </a>
+          </Link>
             <ul className="hide-on-med-and-down right">
                <li><Link  to="/">Home</Link></li>
               <li><Link  to="/browse/talent">Browse Talent</Link></li>

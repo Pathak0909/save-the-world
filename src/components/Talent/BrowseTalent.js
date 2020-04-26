@@ -11,7 +11,11 @@ const BrowseTalent=()=>{
     let [data,setData]=useState([]);
     let [displayData,setDisplayData]=useState([]);
     let tableData=[];
-
+    const sectors=[
+      'bd','sales','marketing','engineering',
+      'product','design','finance','ops','analytics',
+      'retail services'
+    ]
     useEffect(()=>{
       
       const fetchData=async()=>{
@@ -47,12 +51,19 @@ const BrowseTalent=()=>{
 
       const filterBySector=(types)=>{
         //setDisplayData(data)
-        if(types.includes('other'))
-        return;
-        let newArr=data.filter(entry=>{
+        let newArr=[];
+        if(types.includes('other')){
+          newArr=data.filter(entry=>{
+            if(!sectors.includes(entry.company_sector.toLowerCase()))
+              return entry;
+          })
+        }
+        else{
+        newArr=data.filter(entry=>{
           if(types.includes(entry.company_sector.toLowerCase()))
             return entry;
         })
+      }
         setDisplayData(newArr);
       }
       const filter=(filterType)=>{
@@ -71,8 +82,8 @@ const BrowseTalent=()=>{
         console.log(`sorting with ${field}`)
         let temp=[...displayData];
        temp.sort(function(a, b){
-          if(a[field] < b[field]) { return -1; }
-          if(a[field] > b[field]) { return 1; }
+          if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
+          if(a[field].toLowerCase() > b[field].toLowerCase()) { return 1; }
           return 0;
       })
       console.log('Data after sorting: ',temp);
@@ -141,7 +152,7 @@ const BrowseTalent=()=>{
                       <li><a onClick={()=>{sortRecent('createdAt')}}>Date</a></li>
                       <li><a onClick={()=>{sortAlphabetically('name')}}>Name</a></li>
                       <li><a onClick={()=>{sortAlphabetically('college_name')}}>College</a></li>
-                      <li><a onClick={()=>{sortAlphabetically('sepcialization')}}>Specialization</a></li>
+                      <li><a onClick={()=>{sortAlphabetically('specialization')}}>Specialization</a></li>
                       <li><a onClick={()=>{sortAlphabetically('company_name')}}>Company</a></li>
                       {/* <li><a onClick={()=>{sortAlphabetically('sector')}}>Sector</a></li> */}
                       <li><a onClick={()=>{sortAlphabetically('role')}}>Role</a></li>

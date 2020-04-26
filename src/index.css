@@ -71,11 +71,12 @@ table.striped>tbody>tr:nth-child(odd) {
 
 table{
   width: 100% !important;
+  table-layout: fixed;
   
 }
 .table{
   height: 400px !important;
-  width: auto !important;
+  width: 100% !important;
   /* overflow-x: scroll; */
   overflow-y: auto !important;
   height: 400px;
@@ -86,12 +87,13 @@ table,thead,tr,th{
   position: sticky;
   top: 0px;
   background-color: #ffffff;
+  
 }
 
 th,tr{
   margin: 5px 20px;
-  max-width: 150px;
-  /* width: 400px; */
+  max-width: 250px;
+  width: 200px;
   
 }
 
@@ -103,15 +105,26 @@ th{
   padding-left: 20px;
 }
 td{
+  /* height: 100px; */
   font-size: 13px;
   text-align: left;
   padding-left: 20px;
-
+  /* width: 11% !important; */
+  text-overflow: ellipsis; 
+  overflow: hidden;
+  white-space: pre;
+  /* width: 400px !important; */
+  
 }
+/* td:hover {
+  overflow: visible;
+} */
 
-td,th{
+/* td,th{
   max-width: 200px;
-}
+  overflow: hidden;
+
+} */
 
 table.centered thead tr th, table.centered tbody tr td {
   text-align: left !important;

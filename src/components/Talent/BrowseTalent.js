@@ -71,14 +71,11 @@ const BrowseTalent=()=>{
           })
         }
         else{
-        newArr=data.filter(entry=>{
-         if( types.forEach(type=>{
-            if(type.includes(entry.company_sector.toLowerCase())) return true;
+          newArr=data.filter(entry=>{
+            if(types.includes(entry.company_sector.toLowerCase()))
+              return entry;
           })
-         )
-          return entry;  
-        })
-      }
+        }
         setDisplayData(newArr);
       }
       const filter=(filterType)=>{

@@ -170,7 +170,7 @@ console.log('Data: ',data);
                     </ul>
 
                         <a className="btn filter-btn" onClick={()=>{filter(true)}} >
-                        <i className="material-icons small left">filter_list</i>Filter Interns</a>
+                        <i className="material-icons small left">filter_list</i>Filter Internships</a>
                     
                         <a className="btn filter-btn " onClick={()=>{filter(false)}} >
                         <i className="material-icons small left">filter_list</i>Filter Full Time</a>

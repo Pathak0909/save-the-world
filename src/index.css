@@ -92,8 +92,8 @@ table,thead,tr,th{
 
 th,tr{
   margin: 5px 20px;
-  max-width: 250px;
-  width: 200px;
+  /* max-width: 250px;  */
+  width: 170px;
   
 }
 
@@ -109,10 +109,11 @@ td{
   font-size: 13px;
   text-align: left;
   padding-left: 20px;
+  word-wrap: break-word;
   /* width: 11% !important; */
-  text-overflow: ellipsis; 
+  /* text-overflow: ellipsis; 
   overflow: hidden;
-  white-space: pre;
+  white-space: pre; */
   /* width: 400px !important; */
   
 }

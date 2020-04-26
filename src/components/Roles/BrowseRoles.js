@@ -106,7 +106,19 @@ const BrowseRoles=()=>{
       })
       setDisplayData(newArr);
     }
-
+const search=(e)=>{
+  let searchParam=e.target.value.toLowerCase();
+  console.log('search triggered');
+  let newArr=data.filter(entry=>{
+    if(
+      entry.city.toLowerCase().includes(searchParam) ||
+      entry.company_sector.toLowerCase().includes(searchParam) ||
+      entry.city.toLowerCase().includes(searchParam)
+    ) return entry;
+  })
+  setDisplayData(newArr);
+  //this.setState({search: e.target.value.substr(0, 20)});
+}
 if(data.length>0)
 console.log('Data: ',data);
 //console.log('table data: ',tableData);
@@ -126,11 +138,18 @@ console.log('Data: ',data);
                         <h2 className="">Companies Hiring and Open Roles</h2>
                     </div>
                     <div class="input-field col m4 lg4 s12 float-right ">
-                        {/* <input id="search" type="search" required/>
-                        <label class="label-icon" for="search">
-                          <i class="material-icons">search</i>
-                        </label>
-                        <i class="material-icons">close</i> */}
+                       
+                    {/* <nav> */}
+                      <div class="nav-wrapper">
+                        {/* <form> */}
+                          <div class="input-field">
+                            <input id="search" type="search" class="" required onChange={search} placeholder="search jobs by company, sector or location" />
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                          </div>
+                        {/* </form> */}
+                      </div>
+                    {/* </nav> */}
                    </div>
                    
                     

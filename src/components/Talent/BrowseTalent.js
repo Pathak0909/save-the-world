@@ -12,9 +12,10 @@ const BrowseTalent=()=>{
     let [displayData,setDisplayData]=useState([]);
     let tableData=[];
     const sectors=[
-      'bd','sales','marketing','engineering',
-      'product','design','finance','ops','analytics',
-      'retail services'
+      ['bd','sales','marketing'],
+      ['engineering','product','design',],
+      ['finance','ops','analytics'],
+      ['retail services']
     ]
     useEffect(()=>{
       
@@ -48,20 +49,34 @@ const BrowseTalent=()=>{
         var dropdwn = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdwn, {});
       })
-
+      const isPresent=entry=>{
+        let ans=false;
+        sectors.forEach(sectorArr=>{
+          sectorArr.forEach(sector=>{
+            if(sector.includes(entry)){
+              ans=true;
+            }
+          })
+        })
+      return ans;
+      }
       const filterBySector=(types)=>{
         //setDisplayData(data)
         let newArr=[];
-        if(types.includes('other')){
+        if(types=='other'){
           newArr=data.filter(entry=>{
-            if(!sectors.includes(entry.company_sector.toLowerCase()))
-              return entry;
+            if(!isPresent(entry.company_sector.toLowerCase()))
+            // if(!sectors.includes(entry.company_sector.toLowerCase()))
+            return entry;
           })
         }
         else{
         newArr=data.filter(entry=>{
-          if(types.includes(entry.company_sector.toLowerCase()))
-            return entry;
+         if( types.forEach(type=>{
+            if(type.includes(entry.company_sector.toLowerCase())) return true;
+          })
+         )
+          return entry;  
         })
       }
         setDisplayData(newArr);
@@ -134,7 +149,7 @@ const BrowseTalent=()=>{
                       <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
                       <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
                       <li><a onClick={()=>{filterBySector(['retail services'])}}>Retail Services</a></li>
-                      <li><a onClick={()=>{filterBySector(['other'])}}>Other</a></li>
+                      <li><a onClick={()=>{filterBySector('other')}}>Other</a></li>
                     
                       
                     </ul>

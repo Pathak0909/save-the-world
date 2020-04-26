@@ -37,13 +37,13 @@ const RolesTable=({displayData})=>{
           <tr className="field-names">
               <th> Date Posted  </th>
               <th>Company</th>
-              <th> Sector</th>
-              <th>Description</th>
-              <th>Role/Title</th>
-              <th>Hiring</th>
-              <th>Location</th>
-              <th>Point of Contact</th>
-              <th>Job Link</th>
+              <th > Sector</th>
+              <th >Description</th>
+              <th >Role/Title</th>
+              <th >Hiring</th>
+              <th >Location</th>
+              <th >Point of Contact</th>
+              <th >Job Link</th>
           </tr>
         </thead>
 

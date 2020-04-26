@@ -128,7 +128,7 @@ const TalentForm=(props)=>{
        
       <div className="row">
         
-          <form className="col s12" onChange={handleChange}>
+          <form className="col s12" onChange={handleChange} >
             <div className="row">
               <div className="input-field inline col s6">
               <select id="sector" type="text" className="validate">
@@ -283,7 +283,7 @@ const TalentForm=(props)=>{
               </div>
            
               <div className="input-field col s6">
-                <input  id="phone" type="number" className="validate" min="1000000000" max="9999999999"  required="" aria-required="true"/> 
+                <input  id="phone" type="text" className="validate" minLength="10" maxLength="10" pattern="^[789]\d{9}$"  required="" aria-required="true"/> 
                 <label htmlFor="phone">Phone No.</label>
               </div>
             </div>
@@ -291,7 +291,7 @@ const TalentForm=(props)=>{
         </div>
         <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a onClick={handleSubmit} class={`close-btn modal-close waves-effect waves-green btn ${disableBtn}`}>Submit</a>
+      <a onClick={handleSubmit}  class={`close-btn modal-close waves-effect waves-green btn ${disableBtn}`}>Submit</a>
     </div>
         </div>
     )

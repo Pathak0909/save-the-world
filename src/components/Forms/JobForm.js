@@ -8,7 +8,6 @@ import M from 'materialize-css';
 import './JobForm.css';
 const JobForm=()=>{
   const history=useHistory();
-  const { register, watch, errors } = useForm();
   const [disableBtn,setDisableBtn]=useState('disabled');
   const alert=useAlert();
   useEffect(()=>{
@@ -195,7 +194,7 @@ const JobForm=()=>{
               <label htmlFor="job_link">Job Posting Link</label>
             </div>
             <div className="input-field col s6">
-              <input  id="point_of_contact" required="" aria-required="true" type="text" className="validate" />
+              <input  id="point_of_contact" required="" aria-required="true" type="email" className="validate" />
               <label htmlFor=" point_of_contact">Contact Email</label>
             </div>
           </div>

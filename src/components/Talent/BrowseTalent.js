@@ -12,10 +12,10 @@ const BrowseTalent=()=>{
     let [displayData,setDisplayData]=useState([]);
     let tableData=[];
     const sectors=[
-      ['bd','sales','marketing'],
-      ['engineering','product','design',],
-      ['finance','ops','analytics'],
-      ['retail services']
+      'bd','sales','marketing',
+      'engineering','product','design',
+      'finance','ops','analytics',
+      'retail services'
     ]
     useEffect(()=>{
       
@@ -51,12 +51,9 @@ const BrowseTalent=()=>{
       })
       const isPresent=entry=>{
         let ans=false;
-        sectors.forEach(sectorArr=>{
-          sectorArr.forEach(sector=>{
-            if(sector.includes(entry)){
-              ans=true;
-            }
-          })
+        sectors.forEach(sector=>{
+          if(sector==entry || entry.includes(sector))
+          ans=true;
         })
       return ans;
       }
@@ -66,7 +63,6 @@ const BrowseTalent=()=>{
         if(types=='other'){
           newArr=data.filter(entry=>{
             if(!isPresent(entry.company_sector.toLowerCase()))
-            // if(!sectors.includes(entry.company_sector.toLowerCase()))
             return entry;
           })
         }
@@ -142,10 +138,10 @@ const BrowseTalent=()=>{
                   Filter By Sector</a>
                     <div class="nav-wrapper">
                     <ul id='sector-dropdown' class='dropdown-content'>
-                      <li><a onClick={()=>{filterBySector(['bd','sales','marketing'])}}>BD/Sales/Marketing</a></li>
-                      <li><a onClick={()=>{filterBySector(['engineering','product','design'])}}>Engineering/Product/Design</a></li>
-                      <li><a onClick={()=>{filterBySector(['finance','ops','analytics'])}}>Finance/Ops/Analytics</a></li>
-                      <li><a onClick={()=>{filterBySector(['retail services'])}}>Retail Services</a></li>
+                      <li><a onClick={()=>{filterBySector('bd/sales/marketing')}}>BD/Sales/Marketing</a></li>
+                      <li><a onClick={()=>{filterBySector('engineering/product/design')}}>Engineering/Product/Design</a></li>
+                      <li><a onClick={()=>{filterBySector('finance/ops/analytics')}}>Finance/Ops/Analytics</a></li>
+                      <li><a onClick={()=>{filterBySector('retail services')}}>Retail Services</a></li>
                       <li><a onClick={()=>{filterBySector('other')}}>Other</a></li>
                     
                       

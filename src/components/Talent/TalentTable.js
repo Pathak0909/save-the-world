@@ -43,7 +43,7 @@ const TalentTable=({displayData})=>{
               <th>City</th>
               <th>Open to Relocating?</th>
               <th>Email</th>
-              <th>Linked URL/Resume</th>
+              <th>LinkedIn URL/Resume</th>
              
           </tr>
         </thead>

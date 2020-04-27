@@ -35,7 +35,7 @@ const TalentForm=(props)=>{
   }
     const [Data,setData]=useState(initState);
     const handleChange=(e)=>{
-      //console.log('here inside handle change');
+      console.log(`triggered for ${e.target.id}`);
       e.preventDefault();
       setData({
         ...Data,
@@ -43,20 +43,31 @@ const TalentForm=(props)=>{
       })
       if(!validate())
       setDisableBtn('');
+      else
+      setDisableBtn('disabled');
       
     }
     const validate=()=>{
       let isEmpty=false;
       let error=false;
-      console.log('Details: ',Data);
-      Object.values(Data).forEach(val=>{
-        if(val==''){
+      //console.log('Details: ',Data);
+      let notEmptyFields=['name','status','location','email','phone']
+      let workingFields=[]
+      if(Data.phone.length!=10)
+      error=true;
+      if(Data.status=='working'){
+        console.log('checking for working')
+        if((Data.company_name=='' || Data.company_name=='-' )|| (Data.role=='' || Data.role=='-')){
+          console.log('found empty for working')
           isEmpty=true;
-          error=true;
         }
-  
-      })
-     
+      }
+      for(let[key,value] of Object.entries(Data)){
+       if(notEmptyFields.indexOf(key)>-1){
+         if(value=='') isEmpty=true;
+       }
+      }
+     if(isEmpty) error=true;
       return error;
     }
     const handleSubmit=(e)=>{

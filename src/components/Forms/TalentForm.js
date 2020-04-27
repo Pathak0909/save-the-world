@@ -84,7 +84,7 @@ const TalentForm=(props)=>{
       }
     }
     const sendData=()=>{
-      axios.post('https://app.getwork.org:5000/add_talent_profile',{
+      axios.post('http://3.14.202.69:8000/add_talent_profile',{
           createdAt:new Date(),
           name:Data.name,
           is_student:Data.status=='student'?1:0,

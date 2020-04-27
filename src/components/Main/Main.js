@@ -50,7 +50,7 @@ const Main=()=>{
               </a>
             </div>
             <div className="col s12 m5 btn-box">
-            <Link to="/browse/talent" className="big-btn btn" >
+            <Link to="/talent" className="big-btn btn" >
             <span class="main-btn-text">BROWSE TALENT</span>
             </Link>
             </div>
@@ -68,7 +68,7 @@ const Main=()=>{
               </a>
             </div>
             <div className="col s12 m5 btn-box">
-            <Link to="/browse/roles" className="big-btn btn" >
+            <Link to="/roles" className="big-btn btn" >
               <span class="main-btn-text">BROWSE ROLES</span>
             </Link>
             </div>

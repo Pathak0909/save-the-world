@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import moment from 'moment';
 import M from 'materialize-css';
+import {Link} from 'react-router-dom'
 
 const RolesTable=({displayData})=>{
     useEffect(()=>{
@@ -23,7 +24,7 @@ const RolesTable=({displayData})=>{
                 <td>{el.city}</td>
                 <td>{el.point_of_contact}</td>
                 {/* <td className="tooltipped truncate" data-position="bottom" data-tooltip={el.job_link} >{el.job_link}</td> */}
-                <td>{el.job_link}</td>
+                <td><a href={el.job_link} target="_blank">{el.job_link}</a></td>
                
               </tr>
               

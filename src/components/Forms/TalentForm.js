@@ -48,10 +48,11 @@ const TalentForm=(props)=>{
       
     }
     const validate=()=>{
+      setDisableBtn('disabled')
       let isEmpty=false;
       let error=false;
       //console.log('Details: ',Data);
-      let notEmptyFields=['name','status','location','email','phone']
+      let notEmptyFields=['name','status','location','email','phone','resume_url','college_name','specialization']
       let workingFields=[]
       if(Data.phone.length!=10)
       error=true;
@@ -64,11 +65,15 @@ const TalentForm=(props)=>{
       }
       for(let[key,value] of Object.entries(Data)){
        if(notEmptyFields.indexOf(key)>-1){
-         if(value=='') isEmpty=true;
+         if(value=='' || value=='-') isEmpty=true;
        }
       }
      if(isEmpty) error=true;
-      return error;
+     if(error){
+       setDisableBtn('disabled')
+     }else{
+       setDisableBtn('');
+     }
     }
     const handleSubmit=(e)=>{
       e.preventDefault();
@@ -139,11 +144,11 @@ const TalentForm=(props)=>{
        
       <div className="row">
         
-          <form className="col s12" onChange={handleChange} >
+          <form className="col s12" onChange={handleChange} onFocus={validate} onBlur={validate}>
             <div className="row hide-on-small-only">
               <div className="input-field inline col m6 s6">
               <select id="sector" type="text" className="validate">
-              <option value="" disabled selected>Sector</option>
+              <option value="" disabled selected>Find Jobs In</option>
               <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
               <option value="Engineering/Product/Design">Engineering/Product/Design</option>
               <option value="Finance/Ops/Analytics">Finance/Ops/Analytics</option>
@@ -153,14 +158,14 @@ const TalentForm=(props)=>{
              
               </div>
               <div className="input-field inline col m6 s6">
-                <input  id="name" type="text" className="validate"  required="" aria-required="true" />
+                <input  id="name" type="text" className="validate"  required="" aria-required="true"  />
                 <label htmlFor="name">Name</label>
               </div>
               </div>
             <div className="row hide-on-med-and-up">
               <div className="input-field inline col s12">
               <select id="sector" type="text" className="validate">
-              <option value="" disabled selected>Sector</option>
+              <option value="" disabled selected>Find Jobs In</option>
               <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
               <option value="Engineering/Product/Design">Engineering/Product/Design</option>
               <option value="Finance/Ops/Analytics">Finance/Ops/Analytics</option>
@@ -201,10 +206,10 @@ const TalentForm=(props)=>{
                       </div>
               </div>
     
-            <div className="row hide-on-small-only">
+            <div className="row ">
               <div className="input-field inline col s6">
                 <input  id="college_name" type="text" className="validate" maxLength="50" />
-                <label htmlFor="college_name">Current (or former) College Name</label>
+                <label htmlFor="college_name"> College Name</label>
               </div>
               <div className="input-field inline col s6">
               
@@ -214,7 +219,7 @@ const TalentForm=(props)=>{
                 
               </div>
             </div>
-            <div className="show-on-small hide-on-med-and-up">
+            {/* <div className="show-on-small hide-on-med-and-up">
             <div className="row">
               <div className="input-field inline col s12">
                 <input  id="college_name" type="text" className="validate"  maxLength="50"  />
@@ -231,20 +236,20 @@ const TalentForm=(props)=>{
             </div>
               </div>
              
-            </div>
+            </div> */}
             
             
-            <div className="row hide-on-small-only">
+            <div className="row ">
               <div className="input-field col s6">
               <input  id="company_name" type="text" className="validate"  maxLength="50" />
-                <label htmlFor="company_name">Current (or former) Company Name</label>
+                <label htmlFor="company_name">Company Name</label>
               </div>
-              <div className="input-field col s12 m6">
+              <div className="input-field col s6">
                 <input  id="role" type="text" className="validate" />
                 <label htmlFor="role">Role</label>
               </div>
             </div>
-            <div className="show-on-small hide-on-med-and-up">
+            {/* <div className="show-on-small hide-on-med-and-up">
               <div className="row">
               <div className="input-field col s12">
               <input  id="company_name" type="text" className="validate"  maxLength="50"  required="" aria-required="true" />
@@ -258,7 +263,7 @@ const TalentForm=(props)=>{
               </div>
               </div>
              
-            </div>
+            </div> */}
             <div className="row">
              
            
@@ -277,7 +282,7 @@ const TalentForm=(props)=>{
               </div>
             </div>
             <div className="row">
-              <div className="input-field col s4">
+              <div className="input-field col m6 s12">
                       <div class="file-field input-field">
                       <div class="btn">
                           <span>Upload Resume</span>
@@ -289,12 +294,12 @@ const TalentForm=(props)=>{
                   </div>
                       
               </div>
-              <div className="col s2 input-field inline">
+              {/* <div className="col s2 input-field inline hide-on-small-only">
                <label> Or</label>
-              </div>
-              <div className="input-field inline col s6">
+              </div> */}
+              <div className="input-field inline col m6 s12">
                     
-              <input type="text" id="resume_url" onChange={handleChange} placeholder="Enter LinkedIn Url"/>               
+              <input type="text" id="resume_url" onChange={handleChange} placeholder="Or Enter LinkedIn Url"/>               
                {/* <label htmlFor="resume_url">Enter LinkedIn Url</label> */}
                                      
                    

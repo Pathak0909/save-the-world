@@ -138,7 +138,7 @@ const JobForm=()=>{
           <div className="row">
             <div className="input-field col s12">
               <input  id="company_description" required="" aria-required="true" type="text" className="validate" maxLength="150" />
-              <label data-error="wrong" data-success="right"  htmlFor="company_description">Company Description (Max 150 characters)</label>
+              <label data-error="wrong" data-success="right"  htmlFor="company_description">Company Description (Max 150 words)</label>
             </div>
           </div>
           <div className="row hiring-box">
@@ -166,7 +166,7 @@ const JobForm=()=>{
               </div>
               </div>
               <div className="row">
-              <div className="input-field col s6">
+              <div className="input-field col s12">
               <select className="browser-default" id="role" type="text" className="validate"
               onSelect={(e)=>{console.log(e)}}
               >
@@ -180,22 +180,25 @@ const JobForm=()=>{
               {/* <input id="role" type="text" required="" aria-required="true" className="validate" />
               <label data-error="wrong" data-success="right" htmlFor="role">Role/Title</label> */}
             </div>
-           
+           </div>
+           <div className="row">
             <div className="input-field col s6">
               <input id="city" type="text" required="" aria-required="true" className="validate" />
               <label htmlFor="city">City</label>
             </div>
-            </div>
+            
             
         
-          <div className="row">
+       
             <div className="input-field col s6">
               <input  id="job_link" type="url" required="" aria-required="true" className="validate" />
               <label htmlFor="job_link">Job Posting Link</label>
             </div>
-            <div className="input-field col s6">
+            </div>
+            <div className="row">
+            <div className="input-field col s12">
               <input  id="point_of_contact" required="" aria-required="true" type="email" className="validate" />
-              <label htmlFor=" point_of_contact">Contact Email</label>
+              <label htmlFor=" point_of_contact">Email/Contact Number</label>
             </div>
           </div>
         </form>

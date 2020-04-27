@@ -7,6 +7,8 @@ import axios from 'axios';
 
 const TalentForm=(props)=>{
   //console.log(props.addNewData);
+  // let [phoneNo,setPhoneNo]=useState(null);
+  // const phoneRegex=/^[789]\d{9}$/
   const history=useHistory();
   const alert=useAlert();
   const [disableBtn,setDisableBtn]=useState('disabled');
@@ -34,7 +36,12 @@ const TalentForm=(props)=>{
     phone:''
   }
     const [Data,setData]=useState(initState);
+    // const handlePhone=(e)=>{
+    //   let phoneno=e.target.value;
+    //   if(phoneno=''||phoneRegex.test(phoneno))  setPhoneNo(phoneno);
+    // }
     const handleChange=(e)=>{
+    
       console.log(`triggered for ${e.target.id}`);
       e.preventDefault();
       setData({
@@ -49,13 +56,13 @@ const TalentForm=(props)=>{
     }
     const validate=()=>{
       setDisableBtn('disabled')
-      let isEmpty=false;
-      let error=false;
+      let isEmpty=false,phoneError=false;
+      let error=true;
       //console.log('Details: ',Data);
       let notEmptyFields=['name','status','location','email','phone','resume_url','college_name','specialization']
-      let workingFields=[]
+      let workingFields=[];
       if(Data.phone.length!=10)
-      error=true;
+      phoneError=true;
       if(Data.status=='working'){
         console.log('checking for working')
         if((Data.company_name=='' || Data.company_name=='-' )|| (Data.role=='' || Data.role=='-')){
@@ -68,7 +75,7 @@ const TalentForm=(props)=>{
          if(value=='' || value=='-') isEmpty=true;
        }
       }
-     if(isEmpty) error=true;
+     if(!isEmpty && !phoneError) error=false;
      if(error){
        setDisableBtn('disabled')
      }else{
@@ -94,7 +101,7 @@ const TalentForm=(props)=>{
       return;
       }
       else{
-        alert.error('Please fill all the fields first!');
+        alert.error('Please fill all the fields correctly!');
         document.querySelector('.error-msg').classList.remove('hide');
         return;
       }
@@ -316,7 +323,7 @@ const TalentForm=(props)=>{
               </div>
            
               <div className="input-field col s6">
-                <input  id="phone" type="text" className="validate" minLength="10" maxLength="10" pattern="^[789]\d{9}$"  required="" aria-required="true"/> 
+                <input  id="phone" type="number" className="validate" min="1000000000" max="9999999999" required="" aria-required="true"/> 
                 <label htmlFor="phone">Phone No.</label>
               </div>
             </div>

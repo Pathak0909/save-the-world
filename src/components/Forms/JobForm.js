@@ -92,7 +92,7 @@ const JobForm=()=>{
     document.querySelector('form').reset();
     setTimeout(()=>{
       if(history.location.pathname=='/')
-      history.push('/browse/roles')
+      history.push('/roles')
       else
       window.location.reload(true);
     },3000);

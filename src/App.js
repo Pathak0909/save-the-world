@@ -30,8 +30,8 @@ export default class App extends Component{
               <Navbar></Navbar>
                 <Switch>
                   <Route exact="true" path="/" component={Main}></Route>
-                  <Route exact="true" path="/browse/talent" component={BrowseTalent}></Route>
-                  <Route exact="true" path="/browse/roles" component={BrowseRoles}></Route>
+                  <Route exact="true" path="/talent" component={BrowseTalent}></Route>
+                  <Route exact="true" path="/roles" component={BrowseRoles}></Route>
                 </Switch>
               </BrowserRouter>
   </AlertProvider>

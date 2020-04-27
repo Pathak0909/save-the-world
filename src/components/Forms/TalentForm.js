@@ -70,7 +70,7 @@ const TalentForm=(props)=>{
       document.querySelector('form').reset();
       setTimeout(()=>{
         if(history.location.pathname=='/')
-      history.push('/browse/talent')
+      history.push('/talent')
       else
         window.location.reload(true);
       },3000);

@@ -21,9 +21,8 @@ const BrowseRoles=()=>{
   useEffect(()=>{
       
     const fetchData=async()=>{
-      
       let arr=[];
-     const result=await axios.get('http://3.14.202.69:8000/get_talent_connect_role')
+     const result=await axios.get('https://app.getwork.org:5000/get_talent_connect_role')
         .then(res=>{
         console.log('res from role: ',res.data.data);
         res.data.data.forEach(resData=>{

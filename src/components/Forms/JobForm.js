@@ -45,7 +45,7 @@ const JobForm=()=>{
   }
   const sendData=()=>{
     let i=1;
-    axios.post('http://3.14.202.69:8000/add_talent_connect_role',{
+    axios.post('https://app.getwork.org:5000/add_talent_connect_role',{
                 company_name:Data.company,
                 description:Data.company_description,
                 company_sector:Data.sector,

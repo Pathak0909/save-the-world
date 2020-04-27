@@ -145,7 +145,7 @@ const TalentForm=(props)=>{
       <div className="row">
         
           <form className="col s12" onChange={handleChange} onFocus={validate} onBlur={validate}>
-            <div className="row hide-on-small-only">
+            {/* <div className="row hide-on-small-only">
               <div className="input-field inline col m6 s6">
               <select id="sector" type="text" className="validate">
               <option value="" disabled selected>Find Jobs In</option>
@@ -161,8 +161,8 @@ const TalentForm=(props)=>{
                 <input  id="name" type="text" className="validate"  required="" aria-required="true"  />
                 <label htmlFor="name">Name</label>
               </div>
-              </div>
-            <div className="row hide-on-med-and-up">
+              </div> */}
+            <div className="row ">
               <div className="input-field inline col s12">
               <select id="sector" type="text" className="validate">
               <option value="" disabled selected>Find Jobs In</option>
@@ -175,7 +175,7 @@ const TalentForm=(props)=>{
              
               </div>
               </div>
-              <div className="row  hide-on-med-and-up">
+              <div className="row ">
               <div className="input-field inline col s12">
                 <input  id="name" type="text" className="validate"  required="" aria-required="true" />
                 <label htmlFor="name">Name</label>

@@ -129,8 +129,8 @@ const TalentForm=(props)=>{
       <div className="row">
         
           <form className="col s12" onChange={handleChange} >
-            <div className="row">
-              <div className="input-field inline col s6">
+            <div className="row hide-on-small-only">
+              <div className="input-field inline col m6 s6">
               <select id="sector" type="text" className="validate">
               <option value="" disabled selected>Sector</option>
               <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
@@ -140,10 +140,27 @@ const TalentForm=(props)=>{
               <option value="Other">Other</option>
             </select>
              
-                 {/* <input id="sector" type="text" className="validate" />
-                <label htmlFor="sector">Sector</label> */}
               </div>
-              <div className="input-field inline col s6">
+              <div className="input-field inline col m6 s6">
+                <input  id="name" type="text" className="validate"  required="" aria-required="true" />
+                <label htmlFor="name">Name</label>
+              </div>
+              </div>
+            <div className="row hide-on-med-and-up">
+              <div className="input-field inline col s12">
+              <select id="sector" type="text" className="validate">
+              <option value="" disabled selected>Sector</option>
+              <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
+              <option value="Engineering/Product/Design">Engineering/Product/Design</option>
+              <option value="Finance/Ops/Analytics">Finance/Ops/Analytics</option>
+              <option value="Retail Services">Retail Services</option>
+              <option value="Other">Other</option>
+            </select>
+             
+              </div>
+              </div>
+              <div className="row  hide-on-med-and-up">
+              <div className="input-field inline col s12">
                 <input  id="name" type="text" className="validate"  required="" aria-required="true" />
                 <label htmlFor="name">Name</label>
               </div>

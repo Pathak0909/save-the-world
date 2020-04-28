@@ -32,7 +32,7 @@ const RolesTable=({displayData})=>{
         })
       }
     return(
-        <div className="table container">
+        <div className="table">
             <table className="responsive striped ">
         <thead id="fixedContainer">
           <tr className="field-names">

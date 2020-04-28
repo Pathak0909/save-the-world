@@ -1,5 +1,5 @@
 .browse_roles .title-box{
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .neg-mg{
@@ -10,5 +10,9 @@
 .neg-mg-2{
     position: relative;
     top: -27px;
+}
+
+.functional-btns-container{
+    margin-top: -20px;
 }
 

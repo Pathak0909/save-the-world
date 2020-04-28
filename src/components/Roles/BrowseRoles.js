@@ -158,7 +158,7 @@ console.log('Data: ',data);
                    
                     
                 </div>
-                <div className="row">
+                <div className="row functional-btns-container" >
                 <a class='dropdown-trigger btn filter-btn' href='#' data-target='dropdown1'>
                   <i className="material-icons small left">sort</i>
                   Sort By</a>

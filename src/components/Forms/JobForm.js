@@ -167,7 +167,7 @@ const JobForm=()=>{
               </div>
               <div className="row">
               <div className="input-field col s12">
-              <select className="browser-default" id="role" type="text" className="validate"
+              {/* <select className="browser-default" id="role" type="text" className="validate"
               onSelect={(e)=>{console.log(e)}}
               >
               <option value="" disabled selected>Role</option>
@@ -176,9 +176,9 @@ const JobForm=()=>{
               <option value="Finance/Ops/Analytics">Finance/Ops/Analytics</option>
               <option value="Retail Services">Retail Services</option>
               <option value="Other">Other</option>
-            </select>
-              {/* <input id="role" type="text" required="" aria-required="true" className="validate" />
-              <label data-error="wrong" data-success="right" htmlFor="role">Role/Title</label> */}
+            </select> */}
+              <input id="role" type="text" required="" aria-required="true" className="validate" />
+              <label data-error="wrong" data-success="right" htmlFor="role">Role/Title</label>
             </div>
            </div>
            <div className="row">

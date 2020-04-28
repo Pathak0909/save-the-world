@@ -197,7 +197,7 @@ const JobForm=()=>{
             </div>
             <div className="row">
             <div className="input-field col s12">
-              <input  id="point_of_contact" required="" aria-required="true" type="email" className="validate" />
+              <input  id="point_of_contact" required="" aria-required="true" type="text" className="validate" />
               <label htmlFor=" point_of_contact">Email/Contact Number</label>
             </div>
           </div>

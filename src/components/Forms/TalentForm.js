@@ -41,17 +41,61 @@ const TalentForm=(props)=>{
     //   let phoneno=e.target.value;
     //   if(phoneno=''||phoneRegex.test(phoneno))  setPhoneNo(phoneno);
     // }
+    const fileToBase64 = (filename, filepath) => {
+      return new Promise(resolve => {
+        var file = new File([filename], filepath);
+        var reader = new FileReader();
+        // Read file content on file loaded event
+        reader.onload = function(event) {
+          resolve(event.target.result);
+        };
+        
+        // Convert data to base64 
+        reader.readAsDataURL(file);
+      });
+    };
+  //   const readFileDataAsBase64=(file)=>{
+  //     //const file = e.target.files[0];
+  
+  //     return new Promise((resolve, reject) => {
+  //         const reader = new FileReader();
+  
+  //         reader.onload = (event) => {
+  //             resolve(event.target.result);
+  //         };
+  
+  //         reader.onerror = (err) => {
+  //             reject(err);
+  //         };
+  
+  //         reader.readAsDataURL(file);
+  //     });
+  // }
     const handleChange=(e)=>{
       e.preventDefault();
       console.log(`triggered for ${e.target.id}`);
      
       if(e.target.id=='resume_path'){
-        console.log('inside files');
-        //console.log(e.target.files[0]);
+        const files=e.target.files;
+        console.log('files: ',files);
+        let filedata=new FormData();
+        for(let i=0; i<files.length; i++){
+          filedata.append('resume_doc',files[i]);
+          console.log('inside files',filedata);
+        }
+        // console.log('inside files',filedata);
+        // fileToBase64(file.name, file.webkitRelativePath).then(result => {
+        //   console.log('result: ',result, typeof(result));
+        //   setData({
+        //     ...Data,
+        //     resume_path:result
+        //   })
+        // });
         setData({
           ...Data,
-          [e.target.id]:e.target.files[0]
+          resume_path:filedata
         })
+      
       }
       else
       setData({

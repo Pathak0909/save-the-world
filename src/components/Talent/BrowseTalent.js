@@ -22,7 +22,7 @@ const BrowseTalent=()=>{
       const fetchData=async()=>{
         console.log('inside fetch func')
         let arr=[];
-       const result=await axios.get('https://app.getwork.org:5000/get_talent_profile')
+       const result=await axios.get('http://3.14.202.69:8000/get_talent_profile')
           .then(res=>{
           console.log('inside then func')
           console.log('res from talent: ',res.data.data);

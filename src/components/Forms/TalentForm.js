@@ -31,7 +31,8 @@ const TalentForm=(props)=>{
     role:'-',
     location:'',
     open_to_relocating:'No',
-    resume_url:'',
+    resume_path:null,
+    'linkedin_url':'',
     email:'',
     phone:''
   }
@@ -41,13 +42,23 @@ const TalentForm=(props)=>{
     //   if(phoneno=''||phoneRegex.test(phoneno))  setPhoneNo(phoneno);
     // }
     const handleChange=(e)=>{
-    
-      console.log(`triggered for ${e.target.id}`);
       e.preventDefault();
+      console.log(`triggered for ${e.target.id}`);
+     
+      if(e.target.id=='resume_path'){
+        console.log('inside files');
+        //console.log(e.target.files[0]);
+        setData({
+          ...Data,
+          [e.target.id]:e.target.files[0]
+        })
+      }
+      else
       setData({
         ...Data,
         [e.target.id]:e.target.value
       })
+      console.log('Data: ',Data);
       if(!validate())
       setDisableBtn('');
       else
@@ -59,7 +70,7 @@ const TalentForm=(props)=>{
       let isEmpty=false,phoneError=false;
       let error=true;
       //console.log('Details: ',Data);
-      let notEmptyFields=['name','status','location','email','phone','resume_url','college_name','specialization']
+      let notEmptyFields=['name','status','location','email','phone','college_name','specialization']
       let workingFields=[];
       if(Data.phone.length!=10)
       phoneError=true;
@@ -75,6 +86,7 @@ const TalentForm=(props)=>{
          if(value=='' || value=='-') isEmpty=true;
        }
       }
+      
      if(!isEmpty && !phoneError) error=false;
      if(error){
        setDisableBtn('disabled')
@@ -94,8 +106,8 @@ const TalentForm=(props)=>{
       setTimeout(()=>{
         if(history.location.pathname=='/')
       history.push('/talent')
-      else
-        window.location.reload(true);
+      // else
+      //   window.location.reload(true);
       },3000);
       alert.success('Profile added successfully!');
       return;
@@ -107,7 +119,8 @@ const TalentForm=(props)=>{
       }
     }
     const sendData=()=>{
-      axios.post('https://app.getwork.org:5000/add_talent_profile',{
+      // http://3.14.202.69:8000
+      axios.post('http://3.14.202.69:8000/add_talent_profile',{
           createdAt:new Date(),
           name:Data.name,
           is_student:Data.status=='student'?1:0,
@@ -119,7 +132,9 @@ const TalentForm=(props)=>{
           role:Data.role,
           city:Data.location,
           is_relocation:Data.open_to_relocating=="Yes"?1:0,
-          linkedin_url:Data.resume_url,
+          resume_doc:Data.resume_path,
+          resume_name:Data.name,
+          linkedin_url:Data.linkedin_url,
           email:Data.email,
           phone:Data.phone
 
@@ -293,7 +308,7 @@ const TalentForm=(props)=>{
                       <div class="file-field input-field">
                       <div class="btn">
                           <span>Upload Resume</span>
-                          <input type="file" id="resume_url" onChange={handleChange}/>
+                          <input type="file" id="resume_path" onChange={handleChange}/>
                       </div>
                       <div class="file-path-wrapper">
                           <input class="file-path validate" type="text" onChange={handleChange}/>
@@ -306,8 +321,8 @@ const TalentForm=(props)=>{
               </div> */}
               <div className="input-field inline col m6 s12">
                     
-              <input type="text" id="resume_url" onChange={handleChange} placeholder="Or Enter LinkedIn Url"/>               
-               {/* <label htmlFor="resume_url">Enter LinkedIn Url</label> */}
+              <input type="text" id="linkedin_url" onChange={handleChange} />               
+                <label htmlFor="resume_url">Or Enter LinkedIn Url</label> 
                                      
                    
 

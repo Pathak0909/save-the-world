@@ -1,13 +1,18 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
 const TalentTable=({displayData})=>{
+  useEffect(()=>{
+
+  },[])
   const getResume=resume=>{
     console.log(resume);
     axios.get(`http://3.14.202.69:8000/uploads/covid-19/${resume}`)
       .then(res=>{
-        console.log(res);
+        console.log(res.config.url);
+        const url=res.config.url;
+        window.open(url,'_blank')
       })
       .catch(err=>{
         console.log(err);

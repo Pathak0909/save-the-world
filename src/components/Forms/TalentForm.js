@@ -119,7 +119,7 @@ const TalentForm=(props)=>{
     }
     const handleSubmit=(e)=>{
       e.preventDefault();
-      if(!validatePDF()){
+      if(Data.resume_doc && !validatePDF()){
         alert.error('Resume should be in pdf format');
       return;
       }
@@ -153,6 +153,7 @@ const TalentForm=(props)=>{
      let formData=new FormData();
      const resumeName=Data.phone;
      console.log('resume path: ',resumeName)
+     if(Data.resume_doc)
      formData.append('resume_name',resumeName);
 
      for(let [key,value] of Object.entries(Data)){

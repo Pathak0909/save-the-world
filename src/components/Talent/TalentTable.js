@@ -26,7 +26,7 @@ const TalentTable=({displayData})=>{
         // let linkedin_url=el.linkedin_url
         displayData.forEach(el=>{
           //console.log('el: ',el)
-          let resume=el.resume_path?<button className="btn" onClick={()=>{getResume(el.resume_path)}}>View Resume</button>:'';
+          let resume=el.resume_path && el.resume_path!=='undefined_COVID-19.pdf'?<button className="btn" onClick={()=>{getResume(el.resume_path)}}>View Resume</button>:'';
           tableData.push(
              <tr>
                 <td>{moment(el.createdAt).format('l')}</td>

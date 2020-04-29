@@ -42,9 +42,9 @@ const TalentTable=({displayData})=>{
                 <td>{el.email}</td>
                 <td>
                   {resume}
-                  <br/>
-                  <a href={el.linkedin_url} target="_blank">{el.linkedin_url}</a>
+                                
                 </td>
+                <td><a href={el.linkedin_url} target="_blank">{el.linkedin_url}</a></td>
                 {/* <td>9891100201</td> */}
               </tr>
               
@@ -67,7 +67,8 @@ const TalentTable=({displayData})=>{
               <th>City</th>
               <th>Open to Relocating?</th>
               <th>Email</th>
-              <th>LinkedIn URL/Resume</th>
+              <th>Resume</th>
+              <th>LinkedIn URL</th>
              
           </tr>
         </thead>

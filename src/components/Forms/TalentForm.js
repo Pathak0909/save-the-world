@@ -80,12 +80,19 @@ const TalentForm=(props)=>{
       setDisableBtn('disabled');
       
     }
+    const validatePDF=()=>{
+      if ( Data.resume_doc && Data.resume_doc.type === 'application/pdf' ) 
+       return true;
+
+    return false;
+    }
     const validate=()=>{
       setDisableBtn('disabled')
       let isEmpty=false,phoneError=false;
       let error=true;
       //console.log('Details: ',Data);
       let notEmptyFields=['name','city','email','phone','college_name','specialization']
+      //validatePDF();
       let workingFields=[];
       if(Data.phone && Data.phone.length!=10)
       phoneError=true;
@@ -112,7 +119,10 @@ const TalentForm=(props)=>{
     }
     const handleSubmit=(e)=>{
       e.preventDefault();
-      
+      if(!validatePDF()){
+        alert.error('Resume should be in pdf format');
+      return;
+      }
       //document.querySelector('form').reset();
       if(!validate()){
       console.log('sending data: ',Data);
@@ -341,10 +351,10 @@ const TalentForm=(props)=>{
                       <div class="file-field input-field">
                       <div class="btn">
                           <span>Upload Resume</span>
-                          <input type="file" id="resume_doc" onChange={handleChange}/>
+                          <input type="file" id="resume_doc" onChange={handleChange} />
                       </div>
                       <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" onChange={handleChange}/>
+                          <input class="file-path validate" type="text" placeholder="only in .pdf format" onChange={handleChange}/>
                       </div>
                   </div>
                       

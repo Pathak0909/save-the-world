@@ -23,47 +23,80 @@ const TalentForm=(props)=>{
  
   const initState={
     name:'',
-    status:'',
+    is_student:1,
     college_name:'-',
     company_name:'-',
     specialization:'-',
-    sector:'-',
+    sector:'',
     role:'-',
-    location:'',
-    open_to_relocating:'No',
-    resume_url:'',
+    city:'',
+    is_relocation:0,
+    resume_doc:null,
+    linkedin_url:'',
+    // resume_path:'',
     email:'',
     phone:''
   }
     const [Data,setData]=useState(initState);
-    // const handlePhone=(e)=>{
-    //   let phoneno=e.target.value;
-    //   if(phoneno=''||phoneRegex.test(phoneno))  setPhoneNo(phoneno);
-    // }
+  
+
     const handleChange=(e)=>{
-    
-      console.log(`triggered for ${e.target.id}`);
       e.preventDefault();
+      console.log(`triggered for ${e.target.id}`);
+     
+      //setting the state for resume here
+    //  setData({
+    //    ...Data,
+    //    resume_path:Data.phone
+    //  })
+     
+     if(e.target.id=='is_student' || e.target.id=='is_relocattion' || e.target.id=='resume_doc'){
+        if(e.target.id=='resume_doc'){
+          const file=e.target.files[0];
+          console.log('files: ',file);
+        
+          
+          setData({
+            ...Data,
+            [e.target.id]:file
+          })
+        
+        }
+        else 
+        setData({
+          ...Data,
+            [e.target.id]:parseInt(e.target.value)
+          })
+      }
+      else      
       setData({
         ...Data,
         [e.target.id]:e.target.value
       })
+      console.log('Data: ',Data);
       if(!validate())
       setDisableBtn('');
       else
       setDisableBtn('disabled');
       
     }
+    const validatePDF=()=>{
+      if ( Data.resume_doc && Data.resume_doc.type === 'application/pdf' ) 
+       return true;
+
+    return false;
+    }
     const validate=()=>{
       setDisableBtn('disabled')
       let isEmpty=false,phoneError=false;
       let error=true;
       //console.log('Details: ',Data);
-      let notEmptyFields=['name','status','location','email','phone','resume_url','college_name','specialization']
+      let notEmptyFields=['name','city','email','phone','college_name','specialization','sector']
+      //validatePDF();
       let workingFields=[];
-      if(Data.phone.length!=10)
+      if(Data.phone && Data.phone.length!=10)
       phoneError=true;
-      if(Data.status=='working'){
+      if(!Data.is_student){
         console.log('checking for working')
         if((Data.company_name=='' || Data.company_name=='-' )|| (Data.role=='' || Data.role=='-')){
           console.log('found empty for working')
@@ -75,6 +108,8 @@ const TalentForm=(props)=>{
          if(value=='' || value=='-') isEmpty=true;
        }
       }
+      if(!Data.resume_doc && !Data.linkedin_url)
+      isEmpty=true;
      if(!isEmpty && !phoneError) error=false;
      if(error){
        setDisableBtn('disabled')
@@ -84,7 +119,10 @@ const TalentForm=(props)=>{
     }
     const handleSubmit=(e)=>{
       e.preventDefault();
-      
+      if(Data.resume_doc && !validatePDF()){
+        alert.error('Resume should be in pdf format');
+      return;
+      }
       //document.querySelector('form').reset();
       if(!validate()){
       console.log('sending data: ',Data);
@@ -107,25 +145,46 @@ const TalentForm=(props)=>{
       }
     }
     const sendData=()=>{
-      axios.post('https://app.getwork.org:5000/add_talent_profile',{
-          createdAt:new Date(),
-          name:Data.name,
-          is_student:Data.status=='student'?1:0,
-          college_name:Data.college_name,
-          specialization:Data.specialization,
-          company_sector:Data.sector,
-          company_name:Data.company_name,
-          company_sector:Data.sector,
-          role:Data.role,
-          city:Data.location,
-          is_relocation:Data.open_to_relocating=="Yes"?1:0,
-          linkedin_url:Data.resume_url,
-          email:Data.email,
-          phone:Data.phone
+      // http://3.14.202.69:8000
+      // setData({
+      //   ...Data,
+      //   resume_path:Data.name
+      // })
+     let formData=new FormData();
+     const resumeName=Data.phone;
+     console.log('resume path: ',resumeName)
+     if(Data.resume_doc)
+     formData.append('resume_name',resumeName);
 
-      })
+     for(let [key,value] of Object.entries(Data)){
+       console.log(typeof(value));
+       formData.append(key,value);
+     }
+   
+      console.log('sending data:',formData); 
+      axios.post('https://app.getwork.org:5000/add_talent_profile',
+     formData
+      // {
+      //     createdAt:new Date(),
+      //     name:Data.name,
+      //     is_student:Data.status=='student'?1:0,
+      //     college_name:Data.college_name,
+      //     specialization:Data.specialization,
+      //     company_sector:Data.sector,
+      //     company_name:Data.company_name,
+      //     company_sector:Data.sector,
+      //     role:Data.role,
+      //     city:Data.location,
+      //     is_relocation:Data.open_to_relocating=="Yes"?1:0,
+      //     resume_name:Data.name,
+      //     linkedin_url:Data.linkedin_url,
+      //     email:Data.email,
+      //     phone:Data.phone
+
+      // }
+      )
         .then(res=>{
-          console.log(res);
+          console.log('res : ',res);
 
         })
         .catch(err=>{
@@ -151,7 +210,7 @@ const TalentForm=(props)=>{
        
       <div className="row">
         
-          <form className="col s12" onChange={handleChange} onFocus={validate} onBlur={validate}>
+          <form className="col s12" onChange={handleChange} onFocus={validate} onBlur={validate} id="talentForm">
             {/* <div className="row hide-on-small-only">
               <div className="input-field inline col m6 s6">
               <select id="sector" type="text" className="validate">
@@ -199,13 +258,13 @@ const TalentForm=(props)=>{
                       <div className="col s5 m2">
                         
                       <label>
-                      <input id="status" name="group1" type="radio" value="working" className="validate" />
+                      <input id="is_student" name="group1" type="radio" value="0" className="validate" />
                           <span>Working</span>
                       </label>
                       </div>
                     <div className="col s5 m3 ">
                     <label>
-                    <input  id="status" name="group1" type="radio" value="student" className="validate"/>
+                    <input  id="is_student" name="group1" type="radio" value="1" className="validate"/>
                           <span>Studying</span>
                     </label>
                     </div>
@@ -275,14 +334,14 @@ const TalentForm=(props)=>{
              
            
               <div className="input-field col s6 m6">
-                <input  id="location" type="text" className="validate"  required="" aria-required="true"/>
+                <input  id="city" type="text" className="validate"  required="" aria-required="true"/>
                 <label htmlFor="location">City</label>
               </div>
             
            
               <div className="input-field col s6">
               <label>
-                  <input id="open_to_relocating" type="checkbox" class="filled-in" value="Yes" className="validate"/>
+                  <input id="is_relocation" type="checkbox" class="filled-in" value="1" className="validate"/>
                   <span>Open to relocating?</span>
               </label>
                 
@@ -293,10 +352,10 @@ const TalentForm=(props)=>{
                       <div class="file-field input-field">
                       <div class="btn">
                           <span>Upload Resume</span>
-                          <input type="file" id="resume_url" onChange={handleChange}/>
+                          <input type="file" id="resume_doc" onChange={handleChange} />
                       </div>
                       <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" onChange={handleChange}/>
+                          <input class="file-path validate" type="text" placeholder="only in .pdf format" onChange={handleChange}/>
                       </div>
                   </div>
                       
@@ -306,8 +365,8 @@ const TalentForm=(props)=>{
               </div> */}
               <div className="input-field inline col m6 s12">
                     
-              <input type="text" id="resume_url" onChange={handleChange} placeholder="Or Enter LinkedIn Url"/>               
-               {/* <label htmlFor="resume_url">Enter LinkedIn Url</label> */}
+              <input type="text" id="linkedin_url" onChange={handleChange} />               
+                <label htmlFor="linkedin_url">Or Enter LinkedIn Url</label> 
                                      
                    
 

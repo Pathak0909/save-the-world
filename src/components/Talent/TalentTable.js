@@ -1,12 +1,32 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 const TalentTable=({displayData})=>{
+  useEffect(()=>{
+
+  },[])
+  const getResume=resume=>{
+    console.log(resume);
+    axios.get(`https://app.getwork.org:5000/uploads/covid-19/${resume}`)
+      .then(res=>{
+        console.log(res.config.url);
+        const url=res.config.url;
+        window.open(url,'_blank')
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    //console.log('inside here');
+    //console.log(resume);
+  }
     let tableData=[];
     if(displayData.length>0){
         //console.log('data: ',arr,'type of ',typeof(arr));
+        // let linkedin_url=el.linkedin_url
         displayData.forEach(el=>{
           //console.log('el: ',el)
+          let resume=el.resume_path && el.resume_path!=='undefined_COVID-19.pdf'?<button className="btn" onClick={()=>{getResume(el.resume_path)}}>View Resume</button>:'';
           tableData.push(
              <tr>
                 <td>{moment(el.createdAt).format('l')}</td>
@@ -20,7 +40,11 @@ const TalentTable=({displayData})=>{
                 <td>{el.city}</td>
                 <td>{el.is_relocation?'Yes':'No'}</td>
                 <td>{el.email}</td>
-                <td>{el.linkedin_url}</td>
+                <td>
+                  {resume}
+                                
+                </td>
+                <td><a href={el.linkedin_url} target="_blank">{el.linkedin_url}</a></td>
                 {/* <td>9891100201</td> */}
               </tr>
               
@@ -43,7 +67,8 @@ const TalentTable=({displayData})=>{
               <th>City</th>
               <th>Open to Relocating?</th>
               <th>Email</th>
-              <th>LinkedIn URL/Resume</th>
+              <th>Resume</th>
+              <th>LinkedIn URL</th>
              
           </tr>
         </thead>

@@ -108,8 +108,16 @@ const TalentForm=(props)=>{
          if(value=='' || value=='-') isEmpty=true;
        }
       }
-      if(!Data.resume_doc && !Data.linkedin_url)
+      if(!Data.resume_doc && !Data.linkedin_url){
       isEmpty=true;
+        
+       document.querySelector('.error-msg').classList.remove('hide');
+
+     }
+      if(Data.resume_doc || Data.linkedin_url){
+        document.querySelector('.error-msg').classList.add('hide');
+
+      }
      if(!isEmpty && !phoneError) error=false;
      if(error){
        setDisableBtn('disabled')
@@ -388,8 +396,15 @@ const TalentForm=(props)=>{
             </div>
           </form>
         </div>
+        <span className="error-msg text-center">
+              Please upload your resume or enter your linkedin url
+            </span>
         <div class="modal-footer">
+          
+           
+        
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+
       <a onClick={handleSubmit}  class={`close-btn modal-close waves-effect waves-green btn ${disableBtn}`}>Submit</a>
     </div>
         </div>

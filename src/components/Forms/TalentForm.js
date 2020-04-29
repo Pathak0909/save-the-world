@@ -101,7 +101,8 @@ const TalentForm=(props)=>{
          if(value=='' || value=='-') isEmpty=true;
        }
       }
-      
+      if(!Data.resume_doc && !Data.linkedin_url)
+      isEmpty=true;
      if(!isEmpty && !phoneError) error=false;
      if(error){
        setDisableBtn('disabled')
@@ -121,8 +122,8 @@ const TalentForm=(props)=>{
       setTimeout(()=>{
         if(history.location.pathname=='/')
       history.push('/talent')
-      // else
-      //   window.location.reload(true);
+      else
+        window.location.reload(true);
       },3000);
       alert.success('Profile added successfully!');
       return;
@@ -140,13 +141,15 @@ const TalentForm=(props)=>{
       //   resume_path:Data.name
       // })
      let formData=new FormData();
+     const resumeName=Data.phone;
+     console.log('resume path: ',resumeName)
+     formData.append('resume_name',resumeName);
+
      for(let [key,value] of Object.entries(Data)){
        console.log(typeof(value));
        formData.append(key,value);
      }
-     const resumeName=Data.phone;
-     console.log('resume path: ',resumeName)
-     formData.append('resume_name',resumeName);
+   
       console.log('sending data:',formData); 
       axios.post('http://3.14.202.69:8000/add_talent_profile',
      formData

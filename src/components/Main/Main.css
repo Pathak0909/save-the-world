@@ -162,10 +162,14 @@ footer.page-footer {
   display:inline-block;
   vertical-align: top;
   width: auto;
-  padding: 5px; 
+  padding: 0px 5px; 
 }
 
 .btn-title{
   font-weight: bold;
 
+}
+
+.sharer{
+  padding: 0px 5px;
 }

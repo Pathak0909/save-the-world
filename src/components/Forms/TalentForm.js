@@ -96,7 +96,7 @@ const TalentForm=(props)=>{
       let workingFields=[];
       if(Data.phone && Data.phone.length!=10)
       phoneError=true;
-      if(Data.status=='working'){
+      if(!Data.is_student){
         console.log('checking for working')
         if((Data.company_name=='' || Data.company_name=='-' )|| (Data.role=='' || Data.role=='-')){
           console.log('found empty for working')

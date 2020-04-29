@@ -108,7 +108,7 @@ const Main=()=>{
           <div className="sharers">
           <Sharing
                   sites = {[ "facebook","twitter",'linkedin' ]}
-                  url = 'http://unlocktalenttest.getwork.org'
+                  url = 'http://unlocktalent.getwork.org'
                   title = "GetWork has created a resource connecting talent affected by 
                   layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
                    please share with individuals and companies in our incredible community who can benefit. 

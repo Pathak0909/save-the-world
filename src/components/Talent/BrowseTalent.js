@@ -221,15 +221,7 @@ const paginate = pageNumber =>{
   </div>
 
     <div className="row">
-    {/* <div className="input-field inline col s12">
-              <select id="entries_select" type="text" >
-              <option value="" disabled selected>Entries Per Page</option>
-              <option value="10">10</option>
-              <option value="50">50</option>
-             
-    </select>
-             
-              </div> */}
+   
     <Pagination 
         firstIndex={indexOfFirstEntry}
         lastIndex={indexOfLastEntry}
@@ -238,10 +230,12 @@ const paginate = pageNumber =>{
         totalData={data.length}
         paginate={paginate}
         />
+      </div> 
+
+  
        
     </div>
- 
- </div>
+
     )
 }
 

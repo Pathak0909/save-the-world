@@ -13,7 +13,7 @@ const Pagination = ({firstIndex,lastIndex,currentPage,entriesPerPage, totalData,
        <div className="row">
       
        <ul className='pagination'>
-     <li className="entries-dets"> {firstIndex+1}-{lastIndex>totalData?lastIndex:totalData} of {totalData}</li>
+     <li className="entries-dets"> {firstIndex+1}-{lastIndex<totalData?lastIndex:totalData} of {totalData}</li>
      <li class=""><a href="#!" onClick={() => paginate(currentPage-1)}><i class="material-icons">chevron_left</i></a></li>
        {/* {pageNumbers.map(num => (
            <li class="active light-blue accent-3 pg"><a onClick={() => paginate(num)} 

@@ -7,12 +7,13 @@ import { filter } from 'minimatch';
 import moment from 'moment';
 import Pagination from '../ui/Pagination';
 import TalentTable from './TalentTable';
+import { enumStringBody } from '@babel/types';
 
 const BrowseTalent=()=>{
     let [data,setData]=useState([]);
     let [displayData,setDisplayData]=useState([]);
     let [currentPage,setCurrentPage]=useState(1);
-    let [entriesPerPage,setEntriesPerPage]=useState(10);
+    let [entriesPerPage,setEntriesPerPage]=useState(50);
     let [currentData,setCurrentData]=useState([]);
     let indexOfLastEntry=currentPage*entriesPerPage;
     let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
@@ -77,13 +78,13 @@ const BrowseTalent=()=>{
         let newArr=[];
         if(types=='other'){
           newArr=currentData.filter(entry=>{
-            if(!isPresent(entry.company_sector.toLowerCase()))
+            if(!entry.company_sector || !isPresent(entry.company_sector.toLowerCase()))
             return entry;
           })
         }
         else{
           newArr=currentData.filter(entry=>{
-            if(types.includes(entry.company_sector.toLowerCase()))
+            if(entry.company_sector && types.includes(entry.company_sector.toLowerCase()))
               return entry;
           })
         }
@@ -220,7 +221,15 @@ const paginate = pageNumber =>{
   </div>
 
     <div className="row">
-  
+    {/* <div className="input-field inline col s12">
+              <select id="entries_select" type="text" >
+              <option value="" disabled selected>Entries Per Page</option>
+              <option value="10">10</option>
+              <option value="50">50</option>
+             
+    </select>
+             
+              </div> */}
     <Pagination 
         firstIndex={indexOfFirstEntry}
         lastIndex={indexOfLastEntry}

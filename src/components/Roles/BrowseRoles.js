@@ -10,14 +10,14 @@ import RolesTable from './RolesTable';
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
   let [displayData,setDisplayData]=useState([]);
-  // let [currentPage,setCurrentPage]=useState(1);
-  // let [entriesPerPage,setEntriesPerPage]=useState(5);
-  // let [currentData,setCurrentData]=useState([]);
-  // let indexOfLastEntry=currentPage*entriesPerPage;
-  // let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
-  // const pageNumbers=[];    
-  
-  let tableData=[];
+  //   let [currentPage,setCurrentPage]=useState(1);
+  //   let [entriesPerPage,setEntriesPerPage]=useState(10);
+  //   let [currentData,setCurrentData]=useState([]);
+  //   let indexOfLastEntry=currentPage*entriesPerPage;
+  //   let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
+  //   const pageNumbers=[];      
+  // console.log(`for ${currentPage} : ${indexOfLastEntry}`)
+  // let tableData=[];
   useEffect(()=>{
       
     const fetchData=async()=>{
@@ -36,10 +36,9 @@ const BrowseRoles=()=>{
         //console.log('arr: ',arr);
        
         setData(arr)
-        
-        setDisplayData(arr)
-        //setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry))
-        //setDisplayData(currentData)
+        setDisplayData(arr);
+          //setCurrentData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
+          //setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
        
       }
       fetchData();
@@ -53,17 +52,18 @@ const BrowseRoles=()=>{
       var dropdwn = document.querySelectorAll('.dropdown-trigger');
       M.Dropdown.init(dropdwn, {});
     })
+    // useEffect(()=>{
+    //   setCurrentData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+    //   setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+    // },[currentPage])
+
     // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
     // pageNumbers.push(i);
 
-    // console.log(pageNumbers);
-    //get current posts
-
-//displayData=data.slice(indexOfFirstEntry,indexOfLastEntry);
-//setDisplayData(currentData)
     const sortAlphabetically=(field)=>{
       console.log(`sorting by ${field}`);
-      let temp=[...displayData];
+      //let temp=[...currentData];
+      let temp=[...data]
      temp.sort(function(a, b){
       
         if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
@@ -75,7 +75,8 @@ const BrowseRoles=()=>{
     }
     const sortRecent=(field)=>{
       console.log(`sorting by ${field}`);
-      let temp=[...displayData];
+      //let temp=[...currentData];
+      let temp=[...data];
      temp.sort(function(a, b){
       return new Date(b.createdAt) - new Date(a.createdAt);
     })
@@ -123,7 +124,11 @@ console.log('Data: ',data);
 //console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
-//const paginate = pageNumber => setCurrentPage(pageNumber);
+// const paginate = pageNumber =>{ 
+//   if(pageNumber<1 || pageNumber>Math.ceil(data.length/entriesPerPage)) return;
+//   setCurrentPage(pageNumber)
+//   setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry));
+// };
 
 
   return(
@@ -191,13 +196,16 @@ console.log('Data: ',data);
     </div>
   
   </div>
-        {/* <Pagination 
+  {/* <Pagination 
+        firstIndex={indexOfFirstEntry}
+        lastIndex={indexOfLastEntry}
+        currentPage={currentPage}
         entriesPerPage={entriesPerPage}
         totalData={data.length}
         paginate={paginate}
         /> */}
             
-        </div>
+     </div>
     )
 }
 

@@ -27,7 +27,7 @@ const TalentForm=(props)=>{
     college_name:'-',
     company_name:'-',
     specialization:'-',
-    sector:'',
+    company_sector:'',
     role:'-',
     city:'',
     is_relocation:0,
@@ -238,7 +238,7 @@ const TalentForm=(props)=>{
               </div> */}
             <div className="row ">
               <div className="input-field inline col s12">
-              <select id="sector" type="text" className="validate">
+              <select id="company_sector" type="text" className="validate">
               <option value="" disabled selected>Find Jobs In</option>
               <option value="BD/Sales/Marketing">BD/Sales/Marketing</option>
               <option value="Engineering/Product/Design">Engineering/Product/Design</option>

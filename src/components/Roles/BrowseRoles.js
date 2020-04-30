@@ -10,12 +10,12 @@ import RolesTable from './RolesTable';
 const BrowseRoles=()=>{
   let [data,setData]=useState([]);
   let [displayData,setDisplayData]=useState([]);
-  //   let [currentPage,setCurrentPage]=useState(1);
-  //   let [entriesPerPage,setEntriesPerPage]=useState(10);
-  //   let [currentData,setCurrentData]=useState([]);
-  //   let indexOfLastEntry=currentPage*entriesPerPage;
-  //   let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
-  //   const pageNumbers=[];      
+    let [currentPage,setCurrentPage]=useState(1);
+    let [entriesPerPage,setEntriesPerPage]=useState(50);
+    let [currentData,setCurrentData]=useState([]);
+    let indexOfLastEntry=currentPage*entriesPerPage;
+    let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
+    const pageNumbers=[];      
   // console.log(`for ${currentPage} : ${indexOfLastEntry}`)
   // let tableData=[];
   useEffect(()=>{
@@ -36,9 +36,9 @@ const BrowseRoles=()=>{
         //console.log('arr: ',arr);
        
         setData(arr)
-        setDisplayData(arr);
-          //setCurrentData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
-          //setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
+        //setDisplayData(arr);
+          setCurrentData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
+          setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
        
       }
       fetchData();
@@ -52,18 +52,18 @@ const BrowseRoles=()=>{
       var dropdwn = document.querySelectorAll('.dropdown-trigger');
       M.Dropdown.init(dropdwn, {});
     })
-    // useEffect(()=>{
-    //   setCurrentData(data.slice(indexOfFirstEntry,indexOfLastEntry))
-    //   setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry))
-    // },[currentPage])
+    useEffect(()=>{
+      setCurrentData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+      setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+    },[currentPage])
 
-    // for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
-    // pageNumbers.push(i);
+    for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
+    pageNumbers.push(i);
 
     const sortAlphabetically=(field)=>{
       console.log(`sorting by ${field}`);
-      //let temp=[...currentData];
-      let temp=[...data]
+      let temp=[...currentData];
+      //let temp=[...data]
      temp.sort(function(a, b){
       
         if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
@@ -75,8 +75,8 @@ const BrowseRoles=()=>{
     }
     const sortRecent=(field)=>{
       console.log(`sorting by ${field}`);
-      //let temp=[...currentData];
-      let temp=[...data];
+      let temp=[...currentData];
+      //let temp=[...data];
      temp.sort(function(a, b){
       return new Date(b.createdAt) - new Date(a.createdAt);
     })
@@ -87,7 +87,7 @@ const BrowseRoles=()=>{
       
       //console.log(data);
      // let temp=[...displayData];
-      let newArr=data.filter(entry=>{
+      let newArr=currentData.filter(entry=>{
         if(filterType)
         return entry.hiring_type=='INTERN';
         else
@@ -100,7 +100,7 @@ const BrowseRoles=()=>{
      
       if(types.includes('other'))
       return;
-      let newArr=data.filter(entry=>{
+      let newArr=currentData.filter(entry=>{
         if(types.includes(entry.company_sector.toLowerCase()))
           return entry;
       })
@@ -109,7 +109,7 @@ const BrowseRoles=()=>{
 const search=(e)=>{
   let searchParam=e.target.value.toLowerCase();
   console.log('search triggered');
-  let newArr=data.filter(entry=>{
+  let newArr=currentData.filter(entry=>{
     if(
       entry.city.toLowerCase().includes(searchParam) ||
       entry.company_sector.toLowerCase().includes(searchParam) ||
@@ -124,11 +124,11 @@ console.log('Data: ',data);
 //console.log('table data: ',tableData);
 // if(tableData.length==0) return (<div>Loading...</div>)
 // else
-// const paginate = pageNumber =>{ 
-//   if(pageNumber<1 || pageNumber>Math.ceil(data.length/entriesPerPage)) return;
-//   setCurrentPage(pageNumber)
-//   setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry));
-// };
+const paginate = pageNumber =>{ 
+  if(pageNumber<1 || pageNumber>Math.ceil(data.length/entriesPerPage)) return;
+  setCurrentPage(pageNumber)
+  setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry));
+};
 
 
   return(
@@ -196,14 +196,14 @@ console.log('Data: ',data);
     </div>
   
   </div>
-  {/* <Pagination 
+  <Pagination 
         firstIndex={indexOfFirstEntry}
         lastIndex={indexOfLastEntry}
         currentPage={currentPage}
         entriesPerPage={entriesPerPage}
         totalData={data.length}
         paginate={paginate}
-        /> */}
+        />
             
      </div>
     )

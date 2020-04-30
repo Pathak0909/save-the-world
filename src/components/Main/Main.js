@@ -5,11 +5,37 @@ import {Link} from 'react-router-dom';
 import TalentForm from '../Forms/TalentForm';
 import JobForm from '../Forms/JobForm';
 import Sharing from 'react-sharing';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TumblrShareButton,
+  TumblrIcon,
+  TwitterShareButton,
+  TwitterIcon,
+ WhatsappIcon,
+  WhatsappShareButton,
+ 
+} from "react-share";
+
 
 
 
 const Main=()=>{
-  const url='http://unlocktalenttest.getwork.org';
+  const url='http://unlocktalent.getwork.org';
+  const description=`GetWork has created a resource connecting talent affected by 
+  layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
+   please share with individuals and companies in our incredible community who can benefit.`;
+   const title=`GetWork's Covid 19 Initiative`;
+
   useEffect(()=>{
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals, {});
@@ -105,10 +131,10 @@ const Main=()=>{
               </div>
               
         
-          <div className="sharers">
-          <Sharing
+              <div className="social-icons">
+          {/* <Sharing
                   sites = {[ "facebook","twitter",'linkedin' ]}
-                  url = 'http://unlocktalent.getwork.org'
+                  url = 'http://unlocktalenttest.getwork.org'
                   title = "GetWork has created a resource connecting talent affected by 
                   layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
                    please share with individuals and companies in our incredible community who can benefit. 
@@ -117,8 +143,70 @@ const Main=()=>{
                   layoffs due to Coronavirus, with employers looking to hire. During this challenging time,
                    please share with individuals and companies in our incredible community who can benefit. 
                    https://unlocktalent.getwork.org/"
-                />
-          </div>
+                /> */}
+            
+          <ul>
+            <li>  
+                    <FacebookShareButton 
+                      url={url}
+                      quote={description}
+                    hashtag="#GetWork #Covid19" >
+                      <FacebookIcon size="36" round logoFillColor="white" />
+                  </FacebookShareButton>
+            </li>
+            <li>
+            <TwitterShareButton
+                  url={url}
+                  via={description}
+                hashtag="#GetWork #Covid19" >
+                  <TwitterIcon size="36" round logoFillColor="white" />
+              </TwitterShareButton>
+            </li>
+            <li>
+              <LinkedinShareButton
+                  url={url}
+                  title={title}
+                  summary={description} >
+                  <LinkedinIcon size="36" round logoFillColor="white"/>
+                </LinkedinShareButton>
+            </li>
+            <li>
+              <RedditShareButton 
+                url={url}
+                title={title} >
+                <RedditIcon size="36" round/>
+                </RedditShareButton>
+            </li>
+            <li>
+              <TelegramShareButton
+                url={url}
+                title={title}
+                >
+                <TelegramIcon size="36" round/>
+                </TelegramShareButton>
+            </li>
+            <li>
+                
+              <TumblrShareButton
+                url={url}
+                caption={description}
+              >
+              <TumblrIcon size="36" round/>
+              </TumblrShareButton>
+            </li>
+            <li>
+                 
+              <WhatsappShareButton
+                url={url}
+                title={title}
+                separator=' : '
+              >
+              <WhatsappIcon size="36" round></WhatsappIcon>
+              </WhatsappShareButton>
+            </li>
+          </ul>
+        </div>
+
           
 
         </div>

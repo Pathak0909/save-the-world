@@ -5,11 +5,18 @@ import TalentForm from '../Forms/TalentForm';
 import axios from 'axios';
 import { filter } from 'minimatch';
 import moment from 'moment';
+import Pagination from '../ui/Pagination';
 import TalentTable from './TalentTable';
 
 const BrowseTalent=()=>{
     let [data,setData]=useState([]);
     let [displayData,setDisplayData]=useState([]);
+    let [currentPage,setCurrentPage]=useState(1);
+    let [entriesPerPage,setEntriesPerPage]=useState(10);
+    let [currentData,setCurrentData]=useState([]);
+    let indexOfLastEntry=currentPage*entriesPerPage;
+    let indexOfFirstEntry=indexOfLastEntry-entriesPerPage;
+    const pageNumbers=[];    
     let tableData=[];
     const sectors=[
       'bd','sales','marketing',
@@ -37,7 +44,8 @@ const BrowseTalent=()=>{
           console.log('arr: ',arr);
          
           setData(arr)
-          setDisplayData(arr);
+          setCurrentData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
+          setDisplayData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
         }
         fetchData();
       },[])
@@ -49,6 +57,13 @@ const BrowseTalent=()=>{
         var dropdwn = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdwn, {});
       })
+      useEffect(()=>{
+        setCurrentData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+        setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry))
+      },[currentPage])
+      for(let i=1; i<=Math.ceil(data/entriesPerPage); i++)
+      pageNumbers.push(i);
+
       const isPresent=entry=>{
         let ans=false;
         sectors.forEach(sector=>{
@@ -61,13 +76,13 @@ const BrowseTalent=()=>{
         //setDisplayData(data)
         let newArr=[];
         if(types=='other'){
-          newArr=data.filter(entry=>{
+          newArr=currentData.filter(entry=>{
             if(!isPresent(entry.company_sector.toLowerCase()))
             return entry;
           })
         }
         else{
-          newArr=data.filter(entry=>{
+          newArr=currentData.filter(entry=>{
             if(types.includes(entry.company_sector.toLowerCase()))
               return entry;
           })
@@ -77,7 +92,7 @@ const BrowseTalent=()=>{
       const filter=(filterType)=>{
         //setDisplayData(data)
         console.log(data);
-        let newArr=data.filter(entry=>{
+        let newArr=currentData.filter(entry=>{
           if(filterType)
           return entry.is_student;
            else
@@ -88,7 +103,7 @@ const BrowseTalent=()=>{
       }
       const sortAlphabetically=(field)=>{
         console.log(`sorting with ${field}`)
-        let temp=[...displayData];
+        let temp=[...currentData];
        temp.sort(function(a, b){
           if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
           if(a[field].toLowerCase() > b[field].toLowerCase()) { return 1; }
@@ -99,7 +114,7 @@ const BrowseTalent=()=>{
       }
       const sortRecent=(field)=>{
         console.log(`sorting by ${field}`);
-        let temp=[...displayData];
+        let temp=[...currentData];
        temp.sort(function(a, b){
         return new Date(b.createdAt) - new Date(a.createdAt);
       })
@@ -118,6 +133,13 @@ const BrowseTalent=()=>{
   //console.log('table data: ',tableData);
   // if(tableData.length==0) return (<div>Loading...</div>)
   // else
+
+const paginate = pageNumber =>{ 
+  if(pageNumber<1 || pageNumber>Math.ceil(data.length/entriesPerPage)) return;
+  setCurrentPage(pageNumber)
+  setDisplayData(data.slice(indexOfFirstEntry,indexOfLastEntry));
+};
+
   return(
      
         <div className="browse_talent">
@@ -184,7 +206,7 @@ const BrowseTalent=()=>{
                         <a className="btn btn-reg filter-btn " onClick={()=>{filter(false)}} >
                         <i className="material-icons small left">filter_list</i>Filter Working</a>
                        
-                        <a className="btn btn-reg" onClick={()=>{ setDisplayData(data)}}> <i className="material-icons small">refresh</i></a> 
+                        <a className="btn btn-reg" onClick={()=>{ setDisplayData(currentData)}}> <i className="material-icons small">refresh</i></a> 
                   </div>
             {/* </div> */}
     
@@ -194,11 +216,22 @@ const BrowseTalent=()=>{
     <div class="modal-content talent-modal">
       <TalentForm addNewData={addNewData}></TalentForm>
     </div>
-  
-   
+             
   </div>
+
+    <div className="row">
+  
+    <Pagination 
+        firstIndex={indexOfFirstEntry}
+        lastIndex={indexOfLastEntry}
+        currentPage={currentPage}
+        entriesPerPage={entriesPerPage}
+        totalData={data.length}
+        paginate={paginate}
+        />
        
-       
+    </div>
+ 
  </div>
     )
 }

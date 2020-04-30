@@ -127,3 +127,7 @@ table.centered thead tr th, table.centered tbody tr td {
   text-align: left !important;
 } 
 
+.entries-dets{
+  font-weight: 600;
+  font-size: 14px;
+}

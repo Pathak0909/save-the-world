@@ -91,7 +91,7 @@ const TalentForm=(props)=>{
       let isEmpty=false,phoneError=false;
       let error=true;
       //console.log('Details: ',Data);
-      let notEmptyFields=['name','city','email','phone','college_name','specialization','sector']
+      let notEmptyFields=['name','city','email','phone','college_name','specialization','company_sector']
       //validatePDF();
       let workingFields=[];
       if(Data.phone && Data.phone.length!=10)

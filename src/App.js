@@ -7,7 +7,10 @@ import Main from './components/Main/Main';
 import BrowseTalent from './components/Talent/BrowseTalent';
 import BrowseRoles from './components/Roles/BrowseRoles';
 import Navbar from './components/ui/Navbar';
-import ReactPaginate from 'react-paginate';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-65993236-3');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const options = {
   // you can also just use 'bottom center'

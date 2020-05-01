@@ -61,7 +61,7 @@ const BrowseRoles=()=>{
     pageNumbers.push(i);
 
     const sortAlphabetically=(field)=>{
-      console.log(`sorting by ${field}`);
+      //console.log(`sorting by ${field}`);
       let temp=[...currentData];
       //let temp=[...data]
      temp.sort(function(a, b){
@@ -70,17 +70,17 @@ const BrowseRoles=()=>{
         if(a[field].toLowerCase() > b[field].toLowerCase()) { return 1; }
         return 0;
     })
-    console.log('after sorting: ',temp);
+    //console.log('after sorting: ',temp);
     setDisplayData(temp);
     }
     const sortRecent=(field)=>{
-      console.log(`sorting by ${field}`);
+      //console.log(`sorting by ${field}`);
       let temp=[...currentData];
       //let temp=[...data];
      temp.sort(function(a, b){
       return new Date(b.createdAt) - new Date(a.createdAt);
     })
-    console.log('after sorting: ',temp);
+   // console.log('after sorting: ',temp);
     setDisplayData(temp);
     }
     const filter=(filterType)=>{
@@ -108,7 +108,7 @@ const BrowseRoles=()=>{
     }
 const search=(e)=>{
   let searchParam=e.target.value.toLowerCase();
-  console.log('search triggered');
+  //console.log('search triggered');
   let newArr=currentData.filter(entry=>{
     if(
       entry.city.toLowerCase().includes(searchParam) ||

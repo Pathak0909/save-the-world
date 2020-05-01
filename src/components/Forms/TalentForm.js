@@ -42,7 +42,7 @@ const TalentForm=(props)=>{
 
     const handleChange=(e)=>{
       e.preventDefault();
-      console.log(`triggered for ${e.target.id}`);
+      //console.log(`triggered for ${e.target.id}`);
      
       //setting the state for resume here
     //  setData({
@@ -53,7 +53,7 @@ const TalentForm=(props)=>{
      if(e.target.id=='is_student' || e.target.id=='is_relocattion' || e.target.id=='resume_doc'){
         if(e.target.id=='resume_doc'){
           const file=e.target.files[0];
-          console.log('files: ',file);
+          //console.log('files: ',file);
         
           
           setData({
@@ -97,9 +97,9 @@ const TalentForm=(props)=>{
       if(Data.phone && Data.phone.length!=10)
       phoneError=true;
       if(!Data.is_student){
-        console.log('checking for working')
+        //console.log('checking for working')
         if((Data.company_name=='' || Data.company_name=='-' )|| (Data.role=='' || Data.role=='-')){
-          console.log('found empty for working')
+          //console.log('found empty for working')
           isEmpty=true;
         }
       }
@@ -134,7 +134,7 @@ const TalentForm=(props)=>{
       }
       //document.querySelector('form').reset();
       if(!validate()){
-      console.log('sending data: ',Data);
+      //console.log('sending data: ',Data);
       //props.addNewData(Data);
       sendData();
       document.querySelector('form').reset();
@@ -161,16 +161,16 @@ const TalentForm=(props)=>{
       // })
      let formData=new FormData();
      const resumeName=Data.phone;
-     console.log('resume path: ',resumeName)
+     //console.log('resume path: ',resumeName)
      if(Data.resume_doc)
      formData.append('resume_name',resumeName);
 
      for(let [key,value] of Object.entries(Data)){
-       console.log(typeof(value));
+       //console.log(typeof(value));
        formData.append(key,value);
      }
    
-      console.log('sending data:',formData); 
+      //console.log('sending data:',formData); 
       axios.post('https://app.getwork.org:5000/add_talent_profile',
      formData
       // {

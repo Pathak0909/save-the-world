@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import moment from 'moment';
 import M from 'materialize-css';
-import {Link} from 'react-router-dom'
+
 
 const RolesTable=({displayData})=>{
     useEffect(()=>{

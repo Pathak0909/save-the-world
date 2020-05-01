@@ -38,7 +38,7 @@ const JobForm=()=>{
           ...Data,
           [e.target.id]:e.target.value
       })
-      console.log('details',Data)
+      //console.log('details',Data)
       if(!validate())
       setDisableBtn('');
 
@@ -70,7 +70,7 @@ const JobForm=()=>{
   const validate=()=>{
     let isEmpty=false;
     let error=false;
-    console.log('Details: ',Data);
+    //console.log('Details: ',Data);
     Object.values(Data).forEach(val=>{
       if(val==''){
         isEmpty=true;
@@ -86,7 +86,7 @@ const JobForm=()=>{
     
     //document.querySelector('form').reset();
     if(!validate()){
-    console.log('sending data: ',Data);
+    //console.log('sending data: ',Data);
     
     sendData();
     document.querySelector('form').reset();

@@ -32,7 +32,7 @@ const BrowseTalent=()=>{
         let arr=[];
        const result=await axios.get('https://app.getwork.org:5000/get_talent_profile')
           .then(res=>{
-          console.log('inside then func')
+          //console.log('inside then func')
           console.log('res from talent: ',res.data.data);
           res.data.data.forEach(resData=>{
             arr.push(resData);
@@ -42,7 +42,7 @@ const BrowseTalent=()=>{
           .catch(err=>{
             console.log(err);
           })
-          console.log('arr: ',arr);
+          //console.log('arr: ',arr);
          
           setData(arr)
           setCurrentData(arr.slice(indexOfFirstEntry,indexOfLastEntry));
@@ -92,45 +92,45 @@ const BrowseTalent=()=>{
       }
       const filter=(filterType)=>{
         //setDisplayData(data)
-        console.log(data);
+        //console.log(data);
         let newArr=currentData.filter(entry=>{
           if(filterType)
           return entry.is_student;
            else
           return !entry.is_student;
         })
-        console.log(newArr);
+        //console.log(newArr);
         setDisplayData(newArr);
       }
       const sortAlphabetically=(field)=>{
-        console.log(`sorting with ${field}`)
+       //console.log(`sorting with ${field}`)
         let temp=[...currentData];
        temp.sort(function(a, b){
           if(a[field].toLowerCase() < b[field].toLowerCase()) { return -1; }
           if(a[field].toLowerCase() > b[field].toLowerCase()) { return 1; }
           return 0;
       })
-      console.log('Data after sorting: ',temp);
+     // console.log('Data after sorting: ',temp);
       setDisplayData(temp);
       }
       const sortRecent=(field)=>{
-        console.log(`sorting by ${field}`);
+        //console.log(`sorting by ${field}`);
         let temp=[...currentData];
        temp.sort(function(a, b){
         return new Date(b.createdAt) - new Date(a.createdAt);
       })
-      console.log('after sorting: ',temp);
+      //console.log('after sorting: ',temp);
       setDisplayData(temp);
       }
       const addNewData=(newEntry)=>{
-        console.log('inside this: ',newEntry);
+       // console.log('inside this: ',newEntry);
         let temp=[...data,newEntry]
         setData(temp);
         setDisplayData(data);
       }
 
-  if(data.length>0)
-  console.log('Data: ',data);
+  // if(data.length>0)
+  // console.log('Data: ',data);
   //console.log('table data: ',tableData);
   // if(tableData.length==0) return (<div>Loading...</div>)
   // else

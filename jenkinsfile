@@ -1,0 +1,47 @@
+pipeline {
+    agent any  // Runs on any available Jenkins agent
+    
+    stages {
+        // Stage 1: Fetch code from GitLab
+        stage('Checkout') {
+            steps {
+                git branch: 'main', 
+                url: 'https://gitlab.com/veerwalrahul/save-the-world.git'
+            }
+        }
+        
+        // Stage 2: Build (example: list files)
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                sh 'ls -la'  // Lists files (replace with actual build commands)
+            }
+        }
+        
+        // Stage 3: Test (example: simulate tests)
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'echo "Tests passed!"'  // Replace with real tests later
+            }
+        }
+        
+        // Stage 4: Deploy (example: just a message)
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh 'echo "Deployment complete!"'  // Replace with real deployment later
+            }
+        }
+    }
+    
+    // Post-build actions (success/failure notifications)
+    post {
+        success {
+            echo 'Pipeline succeeded! ✅'
+        }
+        failure {
+            echo 'Pipeline failed! ❌'
+        }
+    }
+}

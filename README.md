@@ -1,2 +1,2 @@
 # Save The World Project
-CI/CD Pipeline with Jenkins
+CI/CD Pipeline with Jenkin
